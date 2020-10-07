@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 将父组件的moveies绑定为子组件的cMovies -->
+    <cpn1 :c-movies="movies"></cpn1>
+  </div>
+  <template id="cpn1">
+    <div>
+      <ul>
+        <!-- 使用获取到的cMovies -->
+        <li v-for="(item, index) in cMovies" :key="index">{{item}}</li>
+      </ul>
+    </div>
+  </template>
+  <script src="/js/vue.js">
+  </script>
+  <script>
+    const cpn1 = {
+      template: '#cpn1',
+      //注意这里是必须要的
+      props: ['cMovies']
+    }
+
+    Vue.component('cpn1', cpn1)
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['海王', '海贼王', '海尔兄弟']
+      }
+    });
+  </script>
+</body>
+
+</html>

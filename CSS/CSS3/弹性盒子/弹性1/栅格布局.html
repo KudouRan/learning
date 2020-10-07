@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        article {
+            width: 500px;
+            height: 500px;
+            display: grid;
+            grid-template-rows: 100px 1fr 100px;
+            grid-template-columns: 100px 1fr;
+            grid-template-areas: "logo header"
+                "nav main"
+                "footer footer";
+        }
+
+        header,
+        nav,
+        main,
+        footer,
+        .logo {
+            background-color: #05c46b;
+            background-clip: content-box;
+            padding: 1px;
+        }
+
+        footer {
+            grid-area: footer;
+        }
+
+        .logo {
+            grid-area: logo;
+        }
+
+        header {
+            grid-area: header;
+        }
+
+        main {
+            grid-area: main;
+        }
+
+        nav {
+            grid-area: nav;
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <header></header>
+        <nav></nav>
+        <main></main>
+        <footer></footer>
+    </article>
+</body>
+
+</html>

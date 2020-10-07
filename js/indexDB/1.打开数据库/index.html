@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  const request = window.indexedDB.open('test', 2)
+  let db
+  //数据库打开失败
+  request.addEventListener('error',()=>{
+    console.log('数据库打开出错')
+  })
+  //数据打开成功
+  request.addEventListener('success',()=>{
+    console.log('数据库打开成功')
+    db = request.result
+  })
+  //数据库升级事件
+  //当指定的版本号,大于数据库的实际版本号,就会会发生数据库升级事件
+
+  request.addEventListener('upgradeneeded',(event)=>{
+    db = event.target.result
+  })
+</script>
+</body>
+</html>

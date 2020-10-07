@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      main {
+        width: 100px;
+        height: 100px;
+        background-color: beige;
+        border-top: 20px solid red;
+        margin: 100px;
+        padding-left: 50px;
+        writing-mode: sideways-rl; /* 制造左边的滚动条 */
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+      </p>
+    </main>
+    <script>
+      const main = document.getElementsByTagName('main')[0];
+      console.log('clientLeft', (a = main.clientLeft));
+      console.log('clientTop', (b = main.clientTop));
+    </script>
+  </body>
+</html>

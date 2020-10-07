@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      main {
+        width: 100px;
+        height: 100px;
+        background-color: beige;
+        border-top: 20px solid red;
+        padding-left: 50px;
+        margin: 100px;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta quia
+        nesciunt cupiditate, debitis quam in fugit pariatur repudiandae,
+        quaerat, praesentium at. Dicta odit dolore modi assumenda officia ex
+        veniam qui.
+      </div>
+    </main>
+    <script>
+      const main = document.getElementsByTagName('main')[0];
+      console.log('scrollLeft', (a = main.scrollLeft));
+      console.log('scrollTop', (b = main.scrollTop = 200));
+    </script>
+  </body>
+</html>

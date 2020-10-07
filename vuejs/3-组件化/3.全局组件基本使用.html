@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+  </div>
+  <script src="/js/vue.js"></script>
+  <script>
+    //1.创建一个组件构造器对象
+    const cpnC = Vue.extend({
+      template: `
+<div>
+  <h2>我是标题</h2>
+  <p>我是内容养龄怎非竟韩都，间了见。</p>
+  <p>我是内容君曾之即大收五害妙新楚则令历尚往承国太，要无丑后无苦落国可一婵落太平之一揽案。</p>
+</div>
+      `
+    })
+
+    //2.注册组件(全局组件)
+    Vue.component('cpn', cpnC);
+
+    const app = new Vue({
+      el: '#app',
+      data: {}
+    });
+  </script>
+</body>
+
+</html>

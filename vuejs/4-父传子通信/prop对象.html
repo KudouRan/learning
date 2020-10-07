@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn1 :c-movies="movies"></cpn1>
+  </div>
+  <template id="cpn1">
+    <div>
+      <ul>
+        <li v-for="(item, index) in cMovies" :key="index">{{item}}</li>
+      </ul>
+    </div>
+  </template>
+  <script src="/js/vue.js">
+  </script>
+  <script>
+    const cpn1 = {
+      template: '#cpn1',
+      props: {
+        cMovies: {
+          type: Array, //类型
+          default () { //默认值
+            return ['葡萄', '香蕉'];
+          },
+          required: true //是否是必填项
+        }
+      }
+    }
+    Vue.component('cpn1', cpn1);
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: ['海王', '海贼王', '海尔兄弟']
+      }
+    });
+  </script>
+</body>
+
+</html>

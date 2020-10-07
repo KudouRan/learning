@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vuejs/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="counter">
+      <button @click="counter--">-</button>
+      Counter: {{ counter }}
+      <button @click="counter++">+</button>
+      <h2>{{bar}}</h2>
+    </div>
+    <script>
+      const data = {
+        counter: 0,
+        bar: 'test',
+      };
+
+      const Counter = {
+        data() {
+          return data;
+        },
+      };
+
+      //使用createApp创建实例,而不是使用new Vue()
+      //使用mount进行挂载
+      //mount会返回Vue实例(property)
+      const vm = Vue.createApp(Counter).mount('#counter');
+      console.log(vm);
+      window.vm = vm;
+
+      //vm.counter和vue2一样支持响应式
+      //而且和vue2一样直接添加一个新属性是不支持响应式的
+      vm.counter = 6;
+
+      //可以阻止修改property
+      //这样counter边成6后就无法修改了
+      // Object.freeze(data);
+      // data.bar = '2131'; //并不能修改
+
+      //vm实例上的的方法和属性
+      //参考vue2
+      console.log(vm.$data);
+    </script>
+  </body>
+</html>

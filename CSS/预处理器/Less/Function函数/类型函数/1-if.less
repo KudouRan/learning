@@ -1,0 +1,9 @@
+//if(表达式(返回布尔),真,假)
+
+div {
+  margin: if(isunit(11px, px), 0, 3px);
+  color: color("blue");
+}
+
+//if(2 > 1, blue, green);   //3.6前不可用
+//if((2 > 1), blue, green); // Ok 3.0+

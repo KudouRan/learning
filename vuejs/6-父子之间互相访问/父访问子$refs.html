@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 没有ref的就不会出现在$refs中,不要重名,那样refs中只有最后出现的那个 -->
+    <cpn></cpn>
+    <cpn ref="ref1"></cpn>
+    <cpn ref="ref2"></cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <h2>我是一个组件</h2>
+    </div>
+  </template>
+  <script src="/js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              name: '子组件cpn'
+            }
+          }
+        }
+      }
+    });
+
+    console.log(app.$refs);
+    console.log(app.$refs['ref1'].name);
+    //$refs返回对象,key是ref值
+  </script>
+</body>
+
+</html>

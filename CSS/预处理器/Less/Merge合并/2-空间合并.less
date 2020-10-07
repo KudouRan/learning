@@ -1,0 +1,10 @@
+//两条规则在空间上合并在一起
+
+.mixin() {
+  transform+_: scale(2);
+}
+
+.myclass {
+  .mixin();
+  transform+_: rotate(15deg);
+}

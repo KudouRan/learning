@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 使用传入的值 -->
+    <cpn>我是传入的值 | 插槽</cpn>
+    <!-- 使用默认值 -->
+    <cpn></cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <h1>哈哈哈</h1>
+      <p>我是组件</p>
+      <slot>我是默认值 | 插槽</slot>
+    </div>
+  </template>
+  <script src="/js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      components: {
+        cpn: {
+          template: '#cpn'
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

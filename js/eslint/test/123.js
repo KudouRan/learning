@@ -1,0 +1,3 @@
+function  funName() {}
+
+funName();

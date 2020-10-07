@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      app: {{ name }}
+      <button @click="changeName">点击改变为王五,验证响应式</button>
+      <my-cpn-child></my-cpn-child>
+    </div>
+
+    <template id="cpn">
+      <div>
+        cpn: {{ name }}
+        <!-- 如果没加readonly下面是行得通的,但是不推荐这么做 -->
+        <!-- <button @click="name = '王五'">子组件修改</button> -->
+        <button @click="changeName">子组件修改</button>
+      </div>
+    </template>
+    <script type="module">
+      import {
+        createApp,
+        ref,
+        readonly,
+        provide,
+        inject,
+      } from '../../vuejs/vue.esm-browser.js';
+
+      const App = {
+        components: {
+          'my-cpn-child': {
+            template: '#cpn',
+            setup() {
+              const name = inject('name', '我是可选默认值');
+              //注入修改name的方法
+              //即使是readonly也能修改,因为这个方法是调用的提供者的方法
+              const changeName = inject('changeName');
+              return {
+                name,
+                changeName,
+              };
+            },
+          },
+        },
+        setup() {
+          const name = ref('李四');
+          // 为了避免其他组件修改该值,将其设置为readonly
+          provide('name', readonly(name));
+
+          const changeName = () => {
+            name.value = '王五';
+          };
+
+          //在其他组件中修改应该把自己的修改函数传给他
+          provide('changeName', changeName);
+
+          return {
+            name,
+            changeName,
+          };
+        },
+      };
+
+      const app = createApp(App);
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>

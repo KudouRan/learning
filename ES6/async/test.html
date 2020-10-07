@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      //普通函数
+      function resolveAfter2Seconds() {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve('resolved');
+          }, 2000);
+        });
+      }
+
+      //异步函数
+      async function asyncCall() {
+        console.log('calling');
+        const result = await resolveAfter2Seconds();
+        console.log(result);
+      }
+      asyncCall();
+
+      //生成器函数
+      function* genCall() {
+        console.log('calling');
+        const result = yield resolveAfter2Seconds();
+        console.log(result);
+      }
+      const gen = genCall();
+      //延时器是为了让上面的输出和下面的分开,没有其他意义
+      setTimeout(() => {
+        gen.next().value.then(console.log);
+      }, 3000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve({
+                    '1': 1
+                })
+            }, 1000);
+        })
+
+        const p2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve({
+                    '2': 2
+                })
+            }, 2000);
+        })
+
+        const p3 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // resolve({
+                //     '3': 3
+                // })
+                reject(new Error('这是一个错误'));
+            }, 3000);
+        })
+
+        const p = Promise.all([p1, p2, p3]);
+
+        p.then((data) => {
+            console.log(data);
+        }).catch((err) => {
+            console.error(err);
+        })
+    </script>
+</body>
+
+</html>

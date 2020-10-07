@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    new Promise(resolve => {
+        //模拟数据请求
+        const data = {
+          name: 'Promise'
+        };
+        setTimeout(() => {
+          resolve(data);
+        }, 1000);
+      })
+      .then(data => {
+        //模拟数据处理
+        console.log('第一次处理', data.name);
+        console.log();
+        return new Promise(resolve => {
+          setTimeout(() => {
+            //模拟数据请求
+            resolve(data.name += '大法');
+          }, 2000, data);
+        })
+      })
+      .then((name) => {
+        //模拟数据处理
+        console.log('第二次处理', name);
+      })
+  </script>
+  <!-- <script>
+    //数据请求
+    const data = {
+      name: 'Promise'
+    };
+    setTimeout(() => {
+      //数据处理
+      console.log('第一次处理', data.name);
+      //数据请求
+      data.name += '大法';
+      setTimeout(() => {
+        //数据处理
+        console.log('第二次处理', data.name);
+      }, 2000);
+    }, 1000);
+  </script> -->
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      main {
+        width: 100px;
+        height: 100px;
+        background-color: beige;
+        border-top: 20px solid red;
+        margin-top: 100px;
+        margin-left: -100px;
+        padding-left: 50px;
+      }
+      header {
+        width: 10px;
+        height: 2000px;
+      }
+    </style>
+  </head>
+  <body>
+    <header></header>
+    <main></main>
+    <script>
+      const main = document.getElementsByTagName('main')[0];
+      console.log((a = main.getBoundingClientRect()));
+    </script>
+  </body>
+</html>
+
+<!-- console.log('clientLeft', (b = main.clientLeft));
+console.log('clientTop', (b = main.clientTop)); -->

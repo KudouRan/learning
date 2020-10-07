@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <label>
+        <input type="checkbox" id="agree" v-model="isAgree" />
+        同意协议
+      </label>
+      <label for="">
+        <input type="button" value="注册" :disabled="!isAgree" />
+      </label>
+      <h2>是否同意:{{ isAgree ? '同意' : '不同意' }}</h2>
+    </div>
+    <script src="/js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          isAgree: false,
+        },
+      });
+    </script>
+  </body>
+</html>

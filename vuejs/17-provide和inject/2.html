@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <template id="father">
+      <Child></Child>
+    </template>
+    <template id="child">
+      <div>Child:{{mingzi}}</div>
+    </template>
+    <div id="app">
+      app:{{name}}
+      <button @click="name = 'demo'">点击改变,证明非响应式</button>
+      <Father></Father>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+      //要做的就是从app组件传值到Child组件,不使用props而是provide/inject
+      //如果穿的数据是data中的呢,得使用函数返回对象
+      const app = new Vue({
+        el: '#app',
+        components: {
+          Father: {
+            template: '#father',
+            components: {
+              Child: {
+                template: '#child',
+                // inject: ['name'],
+                //下面是演示除了使用数组,也能使用对象
+                //使用对象时可以给变量重命名,或者给个默认值
+                inject: {
+                  mingzi: {
+                    from: 'name',
+                    default: '张三',
+                    //如果是非原始值,要用函数返回
+                    // default: () => [1, 2, 3]
+                  },
+                },
+              },
+            },
+          },
+        },
+        provide() {
+          return {
+            name: this.name,
+          };
+        },
+        data: {
+          name: '李四',
+        },
+      });
+    </script>
+  </body>
+</html>

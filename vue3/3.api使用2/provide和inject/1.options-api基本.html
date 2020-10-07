@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      app: {{ name }}
+      <my-cpn-child></my-cpn-child>
+    </div>
+
+    <template id="cpn">
+      <div>cpn: {{name}}</div>
+    </template>
+    <script type="module">
+      import { createApp } from '../../vuejs/vue.esm-browser.js';
+
+      const App = {
+        components: {
+          'my-cpn-child': {
+            template: '#cpn',
+            inject: ['name'],
+          },
+        },
+        //vue3要求data必须函数
+        data() {
+          return {
+            name: '张三',
+          };
+        },
+        provide() {
+          return {
+            name: this.name,
+          };
+        },
+      };
+
+      const app = createApp(App);
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>

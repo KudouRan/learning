@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      title:{{title}}
+      <h3>1-系统默认v-model</h3>
+      <Cpn v-model="title"></Cpn>
+      <h3>2-用于替代.sync的命名v-model(对应1-vue2.html的2-2写法)</h3>
+      <Cpn v-model:value="title"></Cpn>
+    </div>
+    <template id="cpn">
+      <div>
+        <button @click="clickFun">随机值</button>
+        <!-- 下面写法对应上面两种方法 -->
+        {{modelValue | value}}
+      </div>
+    </template>
+    <script type="module">
+      import { createApp, ref } from '../../vuejs/vue.esm-browser.js';
+
+      const App = {
+        components: {
+          Cpn: {
+            template: '#cpn',
+            props: {
+              //同样对应两种写法
+              modelValue: String,
+              value: String,
+            },
+            methods: {
+              clickFun() {
+                //对应默认方法
+                this.$emit(
+                  'update:modelValue',
+                  Math.floor(Math.random() * 10e5).toString()
+                );
+                //对应命名方法
+                this.$emit(
+                  'update:value',
+                  Math.floor(Math.random() * 10e5).toString()
+                );
+              },
+            },
+          },
+        },
+        setup() {
+          const title = ref(Math.floor(Math.random() * 10e5).toString());
+          return { title };
+        },
+      };
+
+      const vm = createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

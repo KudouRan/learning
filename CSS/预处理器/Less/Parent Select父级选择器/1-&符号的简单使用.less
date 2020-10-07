@@ -1,0 +1,32 @@
+.div {
+  color: blue;
+
+  &:hover {
+    color: green;
+  }
+
+  &-ok {
+    background-image: url("ok.png");
+  }
+
+  &+& {
+    color: red;
+  }
+
+  && {
+    color: blue;
+  }
+
+  &,
+  &ish {
+    color: cyan;
+  }
+}
+
+.box {
+  a {
+    &:hover {
+      color: red;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script type="module">
+  //直接导入
+  // import {bar,foo} from  './index.js'
+
+  //将bar导出为baz
+  // import {bar as baz} from './index.js'
+
+  //导入多个
+  import {bar as baz, foo as fuu} from './index.js'
+
+  console.log(baz, fuu)
+</script>
+</body>
+</html>

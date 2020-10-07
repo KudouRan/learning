@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn2></cpn2>
+    <cpn2></cpn2>
+  </div>
+  <script src="/js/vue.js"></script>
+  <script>
+    const cpnC1 = Vue.extend({
+      template: `
+ <div>
+  <h2>我是cpnC1标题</h2>
+  <p>我是内容养龄怎非竟韩都，间了见。</p>
+  <p>我是内容君曾之即大收五害妙新楚则令历尚往承国太，要无丑后无苦落国可一婵落太平之一揽案。</p>
+</div>`
+    });
+    const cpnC2 = Vue.extend({
+      template: `
+ <div>
+  <h2>我是cpnC2标题</h2>
+  <p>斯着你后着到如的使商他王哉方，可易才，非。</p>
+  <p> 绝赏法绝，大快易没憾情即前他为，情皇论这乐韩德你见好秦了得子以分先非在，未玉太亡。</p>
+  <cpn1></cpn1>
+</div>`,
+      components: {
+        cpn1: cpnC1
+      }
+    });
+
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      components: {
+        cpn2: cpnC2
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vuejs/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>生命周期</h1>
+      <h2>{{ state.counter }}</h2>
+      <button @click="state.counter++">修改组件counter值</button>
+    </div>
+    <img src="../images/生命周期.png" width="600" />
+
+    <script>
+      //导入生命周期函数
+      const {
+        reactive,
+        onBeforeMount,
+        onMounted,
+        onBeforeUpdate,
+        onUpdated,
+      } = Vue;
+
+      const App = {
+        created() {
+          //vue2的生命周期
+          //他会在setup中的生命周期之后运行
+          //这里只是演示,实际使用时不要混用
+          console.log('0.1*created!!!');
+        },
+        beforeMount() {
+          console.log('1.1*BeforeMount!!!');
+        },
+        setup() {
+          console.log('0-setup!');
+          const state = reactive({
+            counter: 0,
+          });
+
+          onBeforeMount(() => {
+            console.log('1-onBeforeMount!');
+          });
+          onMounted(() => {
+            console.log('2-mounted!');
+          });
+          onBeforeUpdate(() => {
+            console.log('3-onBeforeUpdate!');
+          });
+          onUpdated(() => {
+            console.log('4-updated!');
+          });
+
+          return {
+            state,
+          };
+        },
+      };
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

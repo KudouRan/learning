@@ -1,0 +1,191 @@
+@import './normalize.css';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
+    Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+  background-color: #b2bec3;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  border: 0;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+.clearfix::after {
+  content: ' ';
+  display: table;
+  clear: both;
+}
+
+.clearfix::before {
+  content: ' ';
+  display: table;
+  clear: both;
+}
+
+.hide {
+  display: none !important;
+}
+
+.site-header {
+  position: relative;
+  top: 0;
+  left: 200px;
+  max-width: max-content;
+}
+
+.site-header .nav-category {
+  position: relative;
+  float: left;
+  width: 127px;
+  padding-right: 15px;
+}
+
+.site-header .nav-category .link-category {
+  display: block;
+  padding: 26px 0 38px;
+  text-align: right;
+  color: #333;
+}
+
+.site-header .site-category {
+  position: absolute;
+  top: 88px;
+  left: -92px;
+  z-index: 21;
+  width: 234px;
+  height: 460px;
+  font-size: 14px;
+}
+
+.site-header .site-category-list {
+  height: 420px;
+  border: 0;
+  color: #fff;
+  background: rgba(105, 101, 101, 0.6);
+  margin: 0;
+  padding: 20px 0;
+  list-style-type: none;
+}
+
+.site-category-list .title {
+  color: #fff;
+  position: relative;
+  display: block;
+  padding-left: 30px;
+  height: 42px;
+  line-height: 42px;
+}
+
+.site-category-list .category-item-active > a {
+  background: #ff6700;
+  color: #fff;
+}
+
+.site-category-list .category-item-active .children a:hover {
+  color: #ff6700;
+}
+
+.site-category-list .title em[class*='iconfont'] {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 16px;
+  line-height: 16px;
+  color: #e0e0e0;
+}
+
+.site-category-list .children {
+  display: none;
+  position: absolute;
+  left: 234px;
+  top: 0;
+  z-index: 24;
+  height: 458px;
+  border: 1px solid #e0e0e0;
+  border-left: 0;
+  background: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+}
+
+.site-category-list .category-item-active .children {
+  display: block;
+}
+
+.site-category-list .children-list {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  grid-auto-flow: column;
+  height: 458px;
+  list-style: none;
+}
+
+.site-category-list .children-col-1 .children-list {
+  width: 265px;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.site-category-list .children-col-2 .children-list {
+  width: 530px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.site-category-list .children-col-3 .children-list {
+  width: 795px;
+  /*用calc是一时兴起*/
+  grid-template-columns: repeat(3, calc(100% / 3));
+}
+
+.site-category-list .children-col-4 .children-list {
+  width: 992px;
+  /*
+  这里992/4 != 265 不能用fr,
+  而必须给实际值,所以给的25% (992*25%)
+  如果用1fr,计算出265*4,这是超出的
+  265是每个元素固定的宽度
+  */
+  grid-template-columns: repeat(4, 25%);
+}
+
+.site-category-list .children-list > li {
+  display: flex;
+  align-items: center;
+}
+
+.site-category-list .children-list .link {
+  padding: 18px 20px;
+  color: #333;
+  transition: color 0.2s;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: 265px;
+  height: 76px;
+}
+
+.site-category-list .children-list .thumb {
+  float: left;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+.site-category-list .children-list .text {
+  float: left;
+  width: 172px;
+  line-height: 40px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

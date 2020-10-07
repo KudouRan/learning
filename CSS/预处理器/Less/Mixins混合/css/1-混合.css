@@ -1,0 +1,14 @@
+.a,
+#b {
+  color: red;
+}
+.mixin-class {
+  color: red;
+  font-style: oblique;
+}
+.mixin-class:hover {
+  border: 1px solid #000;
+}
+.mixin-id {
+  color: red;
+}

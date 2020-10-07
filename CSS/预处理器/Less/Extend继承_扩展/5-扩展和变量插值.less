@@ -1,0 +1,27 @@
+//这是可行的,虽然官网说不行
+// @variable: .bucket;
+
+// @{variable} {
+//   color: blue;
+// }
+
+// .some-class:extend(.bucket) {}
+
+//这是不可行的,官网也是说
+// .bucket {
+//   color: blue;
+// }
+
+// .some-class:extend(@{variable}) {}
+
+// @variable: .bucket;
+
+//这是不行的,官网说行???
+
+.bucket {
+  color: blue;
+}
+
+@{variable}:extend(.bucket) {}
+
+@variable: .selector;

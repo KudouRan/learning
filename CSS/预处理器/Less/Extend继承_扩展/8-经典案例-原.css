@@ -1,0 +1,10 @@
+/* <a class="animal bear">Bear</a> */
+/* 本来有animal规则,后期需要添加bear规则 */
+.animal {
+  background-color: black;
+  color: white;
+}
+
+.bear {
+  background-color: brown;
+}

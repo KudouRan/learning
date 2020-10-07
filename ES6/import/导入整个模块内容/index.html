@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script type="module">
+  //将模块中的内容全部导出,并命名为demo
+  import * as demo from './index.js'
+  //同上,到时导出时使用的默认导出,所以所有内容在test.default中
+  import * as test from './test.js'
+
+  console.log(demo.bar)
+  console.log(test.default.foo)
+
+</script>
+</body>
+</html>

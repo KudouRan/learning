@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      div {
+        width: 80px;
+        overflow: hidden;
+        margin: 100px;
+      }
+      main {
+        width: 100px;
+        height: 100px;
+        background-color: beige;
+        border-top: 20px solid red;
+        padding-left: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <main></main>
+    </div>
+    <script>
+      const div = document.getElementsByTagName('div')[0];
+      console.log('scrollWidth', (a = div.scrollWidth));
+      console.log('scrollHeight', (b = div.scrollHeight));
+      console.log('clientWidth', (a = div.clientWidth));
+      console.log('clientHeight', (b = div.clientHeight));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    h2>span {
+      color: aquamarine;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <article>
+      <h2>component one</h2>
+      <!-- 自定义事件绑定父组件的函数 -->
+      <cpn @item-click="cpnClick"></cpn>
+    </article>
+    <article>
+      <h2>component two</h2>
+      <cpn @item-click="cpnClick"></cpn>
+    </article>
+    <article>
+      <h2>component three</h2>
+      <cpn @item-click="cpnClick"></cpn>
+    </article>
+    <hr>
+    <hr>
+    <h2>点击的是<span>{{cpnItem}}</span></h2>
+  </div>
+  <template id="cpn">
+    <div>
+      <!-- 监听button的点击事件,把当前对象传递给btnClink函数 -->
+      <button v-for="item in categories" @click="btnClick(item)">{{item.name}}</button>
+    </div>
+  </template>
+  <script src="/js/vue.js"></script>
+  <script>
+    const cpn = {
+      template: '#cpn',
+      data() {
+        return {
+          categories: [{
+              id: 1,
+              name: '热门导航'
+            },
+            {
+              id: 2,
+              name: '手机数码'
+            },
+            {
+              id: 3,
+              name: '家用电器'
+            },
+            {
+              id: 4,
+              name: '电脑办公'
+            }
+          ]
+        };
+      },
+      methods: {
+        btnClick(item) {
+          //创建一个自定义事件,并把item传递
+          //官方推荐-命名(因为html的关系)
+          this.$emit('item-click', item);
+        }
+      },
+    }
+    Vue.component('cpn', cpn);
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        cpnItem: '没点击呢'
+      },
+      methods: {
+        //接受传递过来的item
+        cpnClick(item) {
+          this.cpnItem = item.name;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

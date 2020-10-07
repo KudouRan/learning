@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn>
+      <!-- 使用解构 -->
+      <template v-slot="{languages}">
+        <h3>使用解构</h3>
+        <span v-for="item in languages"> {{ item }} </span>
+      </template>
+    </cpn>
+    <cpn>
+      <!-- 使用解构重命名 -->
+      <template v-slot="{languages : data}">
+        <h3>使用解构重命名</h3>
+        <span v-for="item in data">={{ item }}=</span>
+      </template>
+    </cpn>
+    <cpn>
+      <!-- 不使用解构 -->
+      <template v-slot="haha">
+        <h3>不使用解构</h3>
+        <span v-for="item in haha.languages">*{{ item }}*</span>
+      </template>
+    </cpn>
+    <cpn>
+      <!-- 使用默认值 -->
+    </cpn>
+  </div>
+  <script src="/js/vue.js"></script>
+  <template id="cpn">
+    <div>
+      <h1>呵呵呵</h1>
+      <p>这是一个组件</p>
+      <slot :languages="pLanguages">
+        <h3>使用默认</h3>
+        <ul>
+          <li v-for="item in pLanguages">{{item}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              pLanguages: ['JavaScript', 'Python', 'Go', 'C', 'Swift']
+            }
+          },
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

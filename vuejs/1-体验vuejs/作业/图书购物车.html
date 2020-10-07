@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      td > button {
+        margin: 4px;
+      }
+
+      input {
+        width: 40px;
+      }
+
+      thead {
+        color: #fff;
+        font-weight: 600;
+        background-color: #ccc;
+      }
+
+      tbody {
+        background-color: #eee;
+      }
+
+      td,
+      th {
+        width: 150px;
+        height: 30px;
+      }
+
+      tr > :first-child {
+        width: 60px;
+      }
+
+      table {
+        text-align: center;
+        border: 1px solid black;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+    <h2>购物车案例</h2>
+    <div id="app">
+      <div v-if="showCart" class="content">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>书籍名称</th>
+              <th>出版日期</th>
+              <th>价格</th>
+              <th>购买数量</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(book, index) in books" :key="book.id">
+              <td>{{ book.id }}</td>
+              <td>{{ book.name }}</td>
+              <td>{{ book.date }}</td>
+              <td>{{ book.price | showPrice }}</td>
+              <td>
+                <button
+                  @click="decrease(book,index)"
+                  :disabled="book.count <= 0"
+                >
+                  -
+                </button>
+                <input type="number" v-model.number="book.count" min="1" />
+                <button @click=" book.count++">+</button>
+              </td>
+              <td>
+                <button @click="deleteBook(index)">移除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h4>总价:{{ booksPrice | showPrice }}</h4>
+      </div>
+      <div v-else>
+        <h3>购物车已被清空</h3>
+      </div>
+    </div>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          books: [
+            {
+              id: '1001',
+              name: '《算法导论》',
+              date: '2006-09',
+              price: 89.0,
+              count: '1',
+            },
+            {
+              id: '1002',
+              name: '《UNIX编程艺术》',
+              date: '2003-09',
+              price: 85.99,
+              count: '1',
+            },
+            {
+              id: '1003',
+              name: '《你不知道的js》',
+              date: '2012-07',
+              price: 101.3,
+              count: '1',
+            },
+            {
+              id: '1004',
+              name: '《代码大全》',
+              date: '2018-11',
+              price: 78.0,
+              count: '1',
+            },
+          ],
+        },
+        computed: {
+          booksPrice() {
+            return this.books
+              .map((book) => {
+                return book.price * book.count;
+              })
+              .reduce((previous, current) => {
+                return previous + current;
+              }, 0);
+          },
+          showCart() {
+            return this.booksPrice;
+          },
+        },
+        methods: {
+          deleteBook(index) {
+            this.books.splice(index, 1);
+          },
+          decrease(book, index) {
+            book.count--;
+            if (book.count == 0) {
+              this.deleteBook(index);
+            }
+          },
+        },
+        filters: {
+          showPrice(price) {
+            return '￥' + price.toFixed(2);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

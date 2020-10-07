@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>小米轮播图</title>
+    <link rel="stylesheet" href="./index.css" />
+    <style>
+      #J_homeSwiper {
+        background-color: aqua;
+        width: 1226px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="J_homeSwiper" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div
+          class="swiper-slide swiper-slide-active"
+          data-swiper-slide-index="0"
+        >
+          <a href="">
+            <img src="./images/0.webp" alt="0" />
+          </a>
+        </div>
+        <div class="swiper-slide" data-swiper-slide-index="1">
+          <a href="">
+            <img src="./images/1.jfif" alt="1" />
+          </a>
+        </div>
+        <div class="swiper-slide" data-swiper-slide-index="2">
+          <a href="">
+            <img src="./images/2.jfif" alt="2" />
+          </a>
+        </div>
+        <div class="swiper-slide" data-swiper-slide-index="3">
+          <a href="">
+            <img src="./images/3.jfif" alt="3" />
+          </a>
+        </div>
+        <div class="swiper-slide" data-swiper-slide-index="4">
+          <a href="">
+            <img src="./images/4.jfif" alt="4" />
+          </a>
+        </div>
+      </div>
+      <div class="swiper-pagination swiper-pagination-bullets">
+        <a class="swiper-pagination-bullet swiper-pagination-bullet-active"></a>
+        <a class="swiper-pagination-bullet"></a>
+        <a class="swiper-pagination-bullet"></a>
+        <a class="swiper-pagination-bullet"></a>
+        <a class="swiper-pagination-bullet"></a>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>

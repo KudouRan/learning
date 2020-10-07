@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script type="text/babel">
+    function UserGreeting() {
+        return <h1>Welcome back!</h1>;
+    }
+
+    function GuestGreeting() {
+        return <h1>Please sign up.</h1>;
+    }
+
+    function Greeting(props) {
+        const isLoggedIn = props.isLoggedIn;
+        if (isLoggedIn) {
+            return <UserGreeting/>;
+        }
+        return <GuestGreeting/>;
+    }
+
+    ReactDOM.render(
+        // Try changing to isLoggedIn={true}:
+        <Greeting isLoggedIn={false}/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>

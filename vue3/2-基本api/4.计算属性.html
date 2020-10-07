@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vuejs/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="counter">
+      <p>Counter: {{ state.counter }}</p>
+      <p>Counter double: {{state.double}}</p>
+      <button @click="decrement">--</button>
+      <button @click="increment">++</button>
+    </div>
+
+    <script>
+      //导入
+      const { reactive, computed } = Vue;
+
+      const Counter = {
+        setup() {
+          const state = reactive({
+            counter: 1,
+            double: computed(() => state.counter * 2),
+          });
+
+          function increment() {
+            state.counter++;
+          }
+
+          function decrement() {
+            state.counter--;
+          }
+
+          return {
+            state,
+            increment,
+            decrement,
+          };
+        },
+      };
+
+      Vue.createApp(Counter).mount('#counter');
+    </script>
+  </body>
+</html>

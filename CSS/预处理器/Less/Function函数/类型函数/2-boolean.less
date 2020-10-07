@@ -1,0 +1,9 @@
+//布尔函数返回真假
+
+@bg: black;
+@bg-light: boolean(luma(@bg) > 50%);
+
+div {
+  background: @bg;
+  color: if(@bg-light, black, white);
+}

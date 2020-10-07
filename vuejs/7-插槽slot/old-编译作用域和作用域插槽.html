@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!--使用实例中的isShow-->
+    <cpn v-show="isShow">
+      <!-- 2.solt-scope接收data(1.中的名字)数据 -->
+      <template slot-scope="slot">
+        <!-- data变成slot的属性 -->
+        <span v-for="item in slot.data"> {{ item }} </span>
+      </template>
+    </cpn>
+    <cpn>
+      <!-- 3.这里和上面一样，演示slot这个也是可以改的 -->
+      <template slot-scope="lang">
+        <span v-for="item in lang.data">*{{ item }}*</span>
+      </template>
+    </cpn>
+    <cpn>
+    </cpn>
+  </div>
+  <script src="/js/vue.js"></script>
+  <template id="cpn">
+    <div>
+      <h1>呵呵呵</h1>
+      <p>这是一个组件</p>
+      <!-- 1.将组件中的PLanguages绑定到data上(名字随意,之后会用) -->
+      <slot :data="pLanguages">
+        <ul>
+          <li v-for="item in pLanguages">{{item}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        isShow: true,
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          data() {
+            return {
+              isShow: false,
+              pLanguages: ['JavaScript', 'Python', 'Go', 'C', 'Swift']
+            }
+          },
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

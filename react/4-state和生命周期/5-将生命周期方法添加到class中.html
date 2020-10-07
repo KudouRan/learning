@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+
+<script
+        src="https://unpkg.com/babel-standalone@6/babel.min.js"
+        crossorigin
+></script>
+<script
+        src="https://unpkg.com/react@16/umd/react.development.js"
+        crossorigin
+></script>
+<script
+        src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+        crossorigin
+></script>
+<script type="text/babel">
+  //注意Component首字母大写
+  class Clock extends React.Component {
+    //在原来的基础上添加构造器
+    constructor(props) {
+      super(props);
+      this.state = {date: new Date()};
+    }
+
+    //组件被渲染到dom后运行(生命周期)
+    componentDidMount() {
+      this.timerID = setInterval(() => this.tick(), 1000)
+    }
+
+    //应该是组件被删除时(生命周期)
+    componentWillUnmount() {
+      clearInterval(this.timerID);
+    }
+
+    //用于更新组件的函数
+    tick() {
+      this.setState({
+        date: new Date()
+      });
+    }
+
+    //this.props改成this.state
+    render() {
+      return (
+          <div>
+            <h1>hello ,world !</h1>
+            <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+          </div>
+      );
+    }
+  }
+
+  //Clock就不用传递时间了,因为使用state获得了时间
+  ReactDOM.render(<Clock/>, document.getElementById('root'));
+</script>
+</body>
+</html>

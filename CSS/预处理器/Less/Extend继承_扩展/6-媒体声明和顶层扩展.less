@@ -1,0 +1,17 @@
+@media screen {
+  .selector {
+    /* 顶级扩展能匹配 */
+    color: blue;
+  }
+
+  @media (min-width: 1023px) {
+    .selector {
+      /* 顶级扩展能匹配 */
+      color: blue;
+    }
+  }
+}
+
+.topLevel:extend(.selector) {}
+
+/* 顶级能匹配所有媒体声明中的 */

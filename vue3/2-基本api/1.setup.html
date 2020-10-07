@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vuejs/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="counter">Counter: {{ counter }}</div>
+    <script>
+      //vue2使用data,methods等等,依赖于this使用属性
+      //vue3使用setup,将属性回归变量,不再依赖this
+      const Counter = {
+        setup() {
+          const counter = 0;
+          return {
+            counter,
+          };
+        },
+      };
+
+      Vue.createApp(Counter).mount('#counter');
+    </script>
+  </body>
+</html>

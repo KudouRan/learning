@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爬虫测试主页</title>
+  <!-- ul>(li>div.box>(div.img>img[src='http://127.0.0.1:8888/public/images/$@0a.jpg' alt='$@0a']+div.a>a[href='http://127.0.0.1:8888/demo/page$']))*8 -->
+  <style>
+    ul {
+      list-style-type: none;
+      width: auto;
+    }
+
+    ul::after {
+      content: '';
+      clear: both;
+      display: block;
+    }
+
+    li {
+      width: 96%;
+    }
+
+    .left {
+      width: 45%;
+      float: left;
+    }
+
+    .right {
+      width: 45%;
+      float: right;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .a {
+      text-align: center;
+      font-size: 18px;
+      padding: 20px;
+    }
+
+    a {
+      color: #008c8c;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <div class="left">
+      <li>
+        <div class="box">
+          <div class="img">
+            <img src="http://127.0.0.1:8888/public/images/0a.jpg" alt="0a">
+            <div class="a"><a href="http://127.0.0.1:8888/demo/page1">页面一</a></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="img">
+            <img src="http://127.0.0.1:8888/public/images/1a.jpg" alt="1a">
+            <div class="a"><a href="http://127.0.0.1:8888/demo/page2">页面2</a></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="img">
+            <img src="http://127.0.0.1:8888/public/images/2a.jpg" alt="2a">
+            <div class="a"><a href="http://127.0.0.1:8888/demo/page3">页面3</a></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="img">
+            <img src="http://127.0.0.1:8888/public/images/3a.jpg" alt="3a">
+            <div class="a"><a href="http://127.0.0.1:8888/demo/page4">页面4</a></div>
+          </div>
+        </div>
+      </li>
+    </div>
+    <div class="right">
+      <li>
+        <div class="box">
+          <div class="img">
+            <img src="http://127.0.0.1:8888/public/images/4a.jpg" alt="4a">
+            <div class="a"><a href="http://127.0.0.1:8888/demo/page5">页面5</a></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="img">
+            <img src="http://127.0.0.1:8888/public/images/5a.png" alt="5a">
+            <div class="a"><a href="http://127.0.0.1:8888/demo/page6">页面6</a></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="img">
+            <img src="http://127.0.0.1:8888/public/images/6a.jpg" alt="6a">
+            <div class="a"><a href="http://127.0.0.1:8888/demo/page7">页面7</a></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="box">
+          <div class="img">
+            <img src="http://127.0.0.1:8888/public/images/7a.jpg" alt="7a">
+            <div class="a"><a href="http://127.0.0.1:8888/demo/page8">页面8</a></div>
+          </div>
+        </div>
+      </li>
+    </div>
+  </ul>
+  <script>
+    let imgs = document.querySelectorAll('img');
+    for (let i = 0; i < imgs.length; i++) {
+      imgs[i].addEventListener('click', () => {
+        window.location.href = 'http://127.0.0.1:8888/demo/page' + (i + 1);
+      })
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+.a,
+#b {
+  color: red;
+}
+
+//括号让c不被输出到css
+
+.c () {
+  font-style: oblique;
+
+  //支持包含选择器
+  &:hover {
+    border: 1px solid #000;
+  }
+}
+
+.mixin-class {
+  .a;
+  .c(); //括号是可选的例如上面的.a,但不建议
+}
+
+.mixin-id {
+  #b();
+}

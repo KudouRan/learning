@@ -1,0 +1,14 @@
+#outer() {
+  .inner {
+    color: red;
+  }
+}
+
+.c {
+  #outer .inner();
+}
+
+//同样的效果
+// #outer>.inner();
+// #outer .inner();
+// #outer.inner();

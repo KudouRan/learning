@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vuejs/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <h3>看文档标题变化</h3>
+        <button @click="state.x++">{{state.x}}</button>
+        <span> + </span>
+        <button @click="state.y++">{{state.y}}</button>
+        <span> = </span>
+        {{state.count}}
+      </div>
+      <div>
+        <h3>watch测试</h3>
+        <button @click="aRef++">{{aRef}}</button>
+        <span> + </span>
+        <button @click="bRef++">{{bRef}}</button>
+        <span> = </span>
+        {{count}}
+      </div>
+    </div>
+    <script>
+      const { reactive, ref, computed, watchEffect, watch } = Vue;
+      const App = {
+        setup() {
+          const state = reactive({
+            count: computed(() => state.x + state.y),
+            x: 0,
+            y: 0,
+          });
+
+          const aRef = ref(1);
+          const bRef = ref(1);
+          const count = computed(() => aRef.value + bRef.value);
+
+          //watchEffect立即执行
+          //并将该执行过程中用到的所有响应式状态的 property 作为依赖进行追踪
+          watchEffect(() => {
+            console.log('watchEffect执行');
+            document.title = `count is ${state.count}`;
+          });
+
+          watchEffect(() => {
+            console.log(
+              'watchEffect执行',
+              `aRef=${aRef.value}`,
+              `bRef=${bRef.value}`
+            );
+          });
+
+          //检测只能是reactive对象,ref数据,getter/effect 函数
+          //或者这些类型组成的数组
+          //这里会有个问题使用对象时,newState和oldState可能会一样
+          watch(state, (newState, oldState) => {
+            console.log('x', newState.x, oldState.x);
+            console.log('y', newState.y, oldState.y);
+          });
+
+          //下面这个使用的数据就没问题
+          watch([aRef, bRef], ([newARef, newBRef], [oldARef, oldBRef]) => {
+            console.log('aRef', newARef, oldARef);
+            console.log('bRef', newBRef, oldBRef);
+          });
+
+          //监听器还是可以停止的,更多查看api文档
+          //https://composition-api.vuejs.org/zh/api.html#watcheffect
+
+          return {
+            state,
+            aRef,
+            bRef,
+            count,
+          };
+        },
+      };
+
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

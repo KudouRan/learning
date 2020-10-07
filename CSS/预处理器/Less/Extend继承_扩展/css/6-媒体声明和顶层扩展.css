@@ -1,0 +1,15 @@
+@media screen {
+  .selector,
+  .topLevel {
+    /* 顶级扩展能匹配 */
+    color: blue;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .selector,
+  .topLevel {
+    /* 顶级扩展能匹配 */
+    color: blue;
+  }
+}
+/* 顶级能匹配所有媒体声明中的 */

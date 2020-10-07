@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .FancyBorder-blue {
+      color: blue;
+    }
+    .FancyBorder-red {
+      color: red;
+    }
+    .FancyBorder-yellowgreen {
+      color: yellowgreen;
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script type="text/babel">
+  //包含关系其实就像vue中的插槽,组件给子组件留位置
+  function FancyBorder(props) {
+    return (
+        <div className={'FancyBorder FancyBorder-' + props.color}>
+          {/* 下面这就是 */}
+          {props.children}
+        </div>
+    )
+  }
+
+  function WelcomeDialog() {
+    return (
+        <FancyBorder color="yellowgreen">
+          <h1 className="Dialog-title">
+            Welcome
+          </h1>
+          <p className="Dialog-message">
+            Thank you for visiting our spacecraft!
+          </p>
+        </FancyBorder>
+    )
+  }
+
+  ReactDOM.render(
+      <WelcomeDialog/>,
+      document.getElementById('root')
+  )
+</script>
+</body>
+</html>

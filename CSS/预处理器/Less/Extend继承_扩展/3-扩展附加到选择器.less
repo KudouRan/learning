@@ -1,0 +1,23 @@
+//这个语法看起来像伪类(处理允许空格)
+//选择器后面可以带一或多个扩展,但是扩展后面就不能有选择器了
+
+//允许空格
+pre:hover :extend(div pre) {}
+
+pre:hover:extend(div pre):extend(.bucket tr) {}
+
+//上面和下面这是等效的
+//pre:hover:extend(div pre, .bucket tr)
+
+//这是不允许的
+// pre:hover:extend(div pre).nth-child(odd){}
+
+
+
+div pre {
+  display: block;
+}
+
+.bucket tr {
+  font-family: Arial, Helvetica, sans-serif;
+}

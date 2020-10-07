@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    label {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <label>
+      <input type="checkbox" name="movies" v-model="movies" value="大话西游">
+      大话西游
+    </label>
+    <label>
+      <input type="checkbox" name="movies" v-model="movies" value="你的名字">
+      你的名字
+    </label>
+    <label>
+      <input type="checkbox" name="movies" v-model="movies" value="天气之子">
+      天气之子
+    </label>
+    <label>
+      <input type="checkbox" name="movies" v-model="movies" value="星际穿越">
+      星际穿越
+    </label>
+    <h2>选中的内容有:{{ movies }}</h2>
+  </div>
+  <script src="/js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        movies: []
+      }
+    });
+  </script>
+</body>
+
+</html>

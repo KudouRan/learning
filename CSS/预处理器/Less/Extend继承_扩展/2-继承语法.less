@@ -1,0 +1,23 @@
+//all 继承全部 与b有关的都会
+//继承多个用逗号分隔
+
+.a:extend(.b all, .e) {
+  color: red;
+}
+
+
+.b {
+  color: blue;
+}
+
+.b .c {
+  font-size: smaller;
+}
+
+.b:hover {
+  background-color: red;
+}
+
+.e {
+  line-height: 20px;
+}

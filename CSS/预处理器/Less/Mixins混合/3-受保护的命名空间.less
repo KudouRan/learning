@@ -1,0 +1,22 @@
+@mode: huge;
+
+#namespace when (@mode =huge) {
+  .mixin() {
+    color: red;
+  }
+}
+
+#namespace {
+  .mixin() when (@mode =huge) {
+    /* */
+  }
+}
+
+
+// #sp_1 when (default()) {
+//   #sp_2 when (default()) {
+//     .mixin() when not(default()) {
+//       /* */
+//     }
+//   }
+// }

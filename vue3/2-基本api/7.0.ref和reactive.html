@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vuejs/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>barRef:{{ barRef }}</h2>
+      <h2>foo.baz:{{ foo.baz }}</h2>
+    </div>
+    <script>
+      const { ref, reactive } = Vue;
+      const App = {
+        setup() {
+          //区别ref和普通值通常用类似于加ref后缀的方法
+          const barRef = ref('barRef');
+          const foo = reactive({
+            baz: 'baz',
+          });
+          //区别就是一个直接使用的变量,而另一个使用对象
+          return {
+            barRef,
+            foo,
+          };
+        },
+      };
+
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+*.class {
+  color: blue;
+}
+
+//.class和*.class等效,但
+//这样不能,加all可以
+.test:extend(.class) {}
+
+
+//伪类顺序不同匹配相同,但less扩展不这样认为
+
+link:hover:visited {
+  color: blue;
+}
+
+.selector:extend(link:visited:hover) {}
+
+
+//:nth-child表达式也是
+//1n+3和n+3
+
+//[title=identifier]和[title="identifier"]还有单引号确是一样的
+
+

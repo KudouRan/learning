@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vuejs/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{dataA}}</h1>
+      <h1>{{ setupA }}</h1>
+      <h1>{{ display }}</h1>
+      <p><button @click="methodsClickHandle">点击methodsClickHandle</button></p>
+      <p><button @click="setupClickHandle">点击setupClickHandle</button></p>
+    </div>
+    <script>
+      const { ref } = Vue;
+      // setup会在所有vue2选项之前解析,不能访问到vue2选项中的数据
+      //相反,setup中的定义项会暴露给this而被vue2选项访问并且修改
+      const App = {
+        data() {
+          return {
+            dataA: 'this is dataA',
+          };
+        },
+        methods: {
+          methodsClickHandle() {
+            console.log(this);
+            console.log('来自methods,打印setupA', this.setupA);
+            this.display = '看控制台';
+          },
+        },
+        setup() {
+          const setupA = 'this is setupA';
+          const display = ref('');
+          const setupClickHandle = function () {
+            console.log('来自setup,打印dataA', this.dataA);
+            display.value = '还是看控制台';
+          };
+          return {
+            setupA,
+            setupClickHandle,
+            display,
+          };
+        },
+      };
+
+      Vue.createApp(App).mount('#app');
+    </script>
+  </body>
+</html>

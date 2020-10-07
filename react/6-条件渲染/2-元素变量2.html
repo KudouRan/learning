@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script type="text/babel">
+    //用户问候
+    function UserGreeting() {
+        return <h1>Welcome back!</h1>;
+    }
+
+    //来宾问候
+    function GuestGreeting() {
+        return <h1>Please sign up.</h1>;
+    }
+
+    //问候
+    function Greeting(props) {
+        const isLoggedIn = props.isLoggedIn;
+        if (isLoggedIn) {
+            return <UserGreeting/>;
+        }
+        return <GuestGreeting/>;
+    }
+
+    function SwitchButton(props) {
+        return (
+            <button onClick={props.onClick}>
+                {props.isLoggedIn ? 'Logout' : 'Login'}
+            </button>
+        );
+    }
+
+
+    class LoginControl extends React.Component {
+        constructor(props) {
+            super(props);
+            this.handleClick = this.handleClick.bind(this);
+            this.state = {isLoggedIn: false};
+        }
+
+        handleClick() {
+            this.setState({isLoggedIn: !this.state.isLoggedIn});
+        }
+
+        render() {
+            const isLoggedIn = this.state.isLoggedIn;
+            return (
+                <div>
+                    <Greeting isLoggedIn={isLoggedIn}/>
+                    <SwitchButton onClick={this.handleClick} isLoggedIn={isLoggedIn}/>
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <LoginControl/>,
+        document.getElementById('root')
+    );
+</script>
+</body>
+</html>

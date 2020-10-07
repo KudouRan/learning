@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <select name="fruit" id="fruit" size="5" multiple v-model="fruit">
+        <!-- <option value="西瓜">西瓜</option>
+      <option value="芒果">芒果</option>
+      <option value="荔枝">荔枝</option>
+      <option value="龙眼">龙眼</option>
+      <option value="菠萝">菠萝</option> -->
+        <option v-for="fruit of fruits" :value="fruit" :key="fruit">
+          {{fruit}}
+        </option>
+      </select>
+      <h2>选择的是{{ fruit }}</h2>
+    </div>
+    <script src="/js/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: '#app',
+        data: {
+          fruit: [],
+          fruits: ['苹果', '香蕉', '火龙果', '梨子', '葡萄'],
+        },
+      });
+    </script>
+  </body>
+</html>

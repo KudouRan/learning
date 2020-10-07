@@ -1,0 +1,13 @@
+public class Test {
+
+   public void pupAge() {
+      int age = 0;
+      age = age + 7;
+      System.out.println("小狗的年龄是: " + age);
+   }
+
+   public static void main(final String[] args) {
+      final Test demo = new Test();
+      demo.pupAge();
+   }
+}

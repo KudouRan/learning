@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+  </div>
+  <template id="cpn">
+    <div>
+      <h2>这是组件</h2>
+      <button @click="btnClick">显示根组件(或实例)</button>
+    </div>
+  </template>
+  <script src="/js/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        say: '我是vue实例'
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          methods: {
+            btnClick() {
+              console.log('根级', this.$root);
+            }
+          },
+        }
+      }
+    });
+    console.log(app.$root === app); //true
+  </script>
+</body>
+
+</html>

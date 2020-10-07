@@ -1,0 +1,14 @@
+//1.扩展和@media仅会匹配同一媒体声明中的选择器
+
+//2.嵌套的媒体声明,父级中的扩展不会匹配子声明中的选择器
+
+@media screen {
+  .screenClass:extend(.selector) {}
+
+  @media (min-width: 1023px) {
+    .selector {
+      /* 并不能匹配到我 */
+      color: blue;
+    }
+  }
+}

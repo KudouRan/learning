@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../vuejs/vue.v2.6.10.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      title:{{title}}
+      <h3>1-1:最基本</h3>
+      <Cpn :value="title" @input="title = $event"></Cpn>
+      <h3>1-2:使用v-model简化上面(当然也可以自定义的值和事件v-model)</h3>
+      <Cpn v-model="title"></Cpn>
+      <h3>2-1:.sync的原型</h3>
+      <Cpn v-bind:value="title" @update:value="title = $event"></Cpn>
+      <h3 style="color: blueviolet">
+        2-2:.sync写法(2-1表明必须写出update:xxx的格式才能简化成v-bind:xxx.sync)
+      </h3>
+      <p>这个写法和后面的vue3做对比</p>
+      <Cpn v-bind:value.sync="title"></Cpn>
+    </div>
+    <template id="cpn">
+      <div>
+        <button @click="clickFun">随机值</button>
+        {{value}}
+      </div>
+    </template>
+    <script>
+      new Vue({
+        el: '#app',
+        components: {
+          Cpn: {
+            template: '#cpn',
+            //自定义model
+            // model: {
+            //   type: 'value',
+            //   event: 'update:value',
+            // },
+            props: {
+              value: String,
+            },
+            methods: {
+              clickFun() {
+                this.$emit(
+                  'input',
+                  Math.floor(Math.random() * 10e5).toString()
+                );
+                this.$emit(
+                  'update:value',
+                  Math.floor(Math.random() * 10e5).toString()
+                );
+              },
+            },
+          },
+        },
+        data: {
+          title: Math.floor(Math.random() * 10e5).toString(),
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+    <cpn1></cpn1>
+  </div>
+  <script type="text/x-template" id="cpn">
+    <div>
+      <h2>这是一标题</h2>
+      <p>那应谓衣夫相变十后一低。</p>
+      <p>便定促徨要故当今，了磊司正杀杨胜牙的，这是如我心所看极国肯找互归仄。</p>
+    </div>
+  </script>
+  <script src="/js/vue.js"></script>
+  <script>
+    //全局
+    Vue.component('cpn', {
+      template: '#cpn'
+    })
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      components: { //局部
+        cpn1: {
+          template: '#cpn'
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

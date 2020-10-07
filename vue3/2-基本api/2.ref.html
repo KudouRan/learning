@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vuejs/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="counter">
+      Counter: {{ counter }}
+      <button @click="increment">+</button>
+    </div>
+    <script>
+      //导入ref
+      const { ref } = Vue;
+
+      const Counter = {
+        setup() {
+          const counter = ref(0);
+
+          function increment() {
+            //这里使用变量名.value
+            counter.value++;
+          }
+
+          return {
+            counter,
+            increment,
+          };
+        },
+      };
+
+      Vue.createApp(Counter).mount('#counter');
+    </script>
+  </body>
+</html>

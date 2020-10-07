@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vuejs/vue.global.js"></script>
+    <style>
+      section {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="test1">
+      <h2>{{x}},{{y}}</h2>
+      <button @click="x++;y++">右下移动坐标</button>
+      <h2>Test1不具有响应式</h2>
+    </section>
+    <section id="test2">
+      <h2>{{x}},{{y}}</h2>
+      <button @click="x++;y++">右下移动坐标</button>
+      <h2>Test2不具有响应式</h2>
+    </section>
+    <section id="test3">
+      <h2>{{foo.x}},{{foo.y}}</h2>
+      <button @click="foo.x++;foo.y++">右下移动坐标</button>
+      <h2>Test3具有响应式</h2>
+    </section>
+    <script>
+      const { reactive } = Vue;
+
+      //外部组合函数,懒得写了,就放一个文件中吧
+      function useMousePosition() {
+        const pos = reactive({
+          x: 0,
+          y: 0,
+        });
+
+        // ...
+        return pos;
+      }
+
+      const Test1 = {
+        setup() {
+          //不能使用展开语法
+          return {
+            ...useMousePosition(),
+          };
+        },
+      };
+
+      const Test2 = {
+        setup() {
+          //不能使用解构
+          const { x, y } = useMousePosition();
+
+          return {
+            x,
+            y,
+          };
+        },
+      };
+
+      const Test3 = {
+        setup() {
+          //这是保持响应式的唯一方法
+          const foo = useMousePosition();
+
+          return {
+            foo,
+          };
+        },
+      };
+
+      Vue.createApp(Test1).mount('#test1');
+      Vue.createApp(Test2).mount('#test2');
+      Vue.createApp(Test3).mount('#test3');
+    </script>
+  </body>
+</html>

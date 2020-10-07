@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn1></cpn1>
+    <cpn2></cpn2>
+  </div>
+  <template id="cpn">
+    <div>
+      <h2>这里是template标签</h2>
+      <p>匹韩许国的，别秦的呼人了己徒只畴最有为为，之法不，光梵种国令要是奔使苦也仓家守的，何肯赐。</p>
+      <p>上杀而令老不找你情慷气，姑志定价他此满设秦的迷能，普厅娘而皇惊自见韩那司，法弟上对足通要他有一关长国别土之，陀了为仄艳，为。</p>
+    </div>
+  </template>
+  <script src="/js/vue.js"></script>
+  <script>
+    Vue.component('cpn1', {
+      template: '#cpn'
+    })
+    const app = new Vue({
+      el: '#app',
+      data: {},
+      components: {
+        'cpn2': {
+          template: '#cpn'
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

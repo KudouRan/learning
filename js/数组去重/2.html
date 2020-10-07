@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>数组去重</h1>
+  <script>
+    const arr = [1, false, undefined, 2, 1, 1, 2, 1, '1', true, true, -0, +0, 1];
+
+    function unique(arr) {
+      for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+          if (arr[i] === arr[j]) {
+            arr.splice(j, 1);
+            j--;
+          }
+        }
+      }
+      return arr;
+    }
+    console.log(unique(arr));
+  </script>
+</body>
+
+</html>

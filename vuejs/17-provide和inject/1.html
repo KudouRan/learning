@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <template id="father">
+      <Child></Child>
+    </template>
+    <template id="child">
+      <div>{{name}}</div>
+    </template>
+    <div id="app">
+      <Father></Father>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+      //要做的就是从app组件传值到Child组件,不使用props而是provide/inject
+      //下面例子将name直接传给了Child,当然用这个方法,Child不知道谁传来的数据,app也不知把数据给了谁
+      const app = new Vue({
+        el: '#app',
+        components: {
+          Father: {
+            template: '#father',
+            components: {
+              Child: {
+                template: '#child',
+                inject: ['name'],
+              },
+            },
+          },
+        },
+        provide: {
+          name: '张三',
+        },
+      });
+    </script>
+  </body>
+</html>

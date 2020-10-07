@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    article {
+      display: grid;
+      width: 400px;
+      height: 200px;
+      grid-template-rows: [r1] 1fr [r2] 1fr [r3];
+      grid-template-columns: [c1] 1fr [c2] 1fr [c3] 1fr [c4] 1fr [c5];
+    }
+
+    div:first-child {
+      grid-row-start: r2;
+      grid-column-start: c2;
+      grid-row-end: r3;
+      grid-column-end: c4;
+      background-color: aquamarine;
+    }
+  </style>
+</head>
+
+<body>
+  <article>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+  </article>
+</body>
+
+</html>

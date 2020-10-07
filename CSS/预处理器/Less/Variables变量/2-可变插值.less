@@ -1,0 +1,31 @@
+/*
+  编译的注释
+  可变插值
+*/
+//作为选择器名(这种注释不编译)
+
+@mydiv: .div;
+@mydiv2: div;
+
+//属性名称
+
+@bgcolor: background-color;
+
+//地址
+
+@images: "../img";
+
+@themes: "../less";
+
+@import "@{themes}/cs.less";
+
+
+@{mydiv} {
+  @{bgcolor}: blue;
+  font: 1em sans-serif;
+}
+
+.@{mydiv2} {
+  background: url("@{images}/demo.png");
+  color: #222222;
+}

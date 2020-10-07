@@ -1,0 +1,11 @@
+{
+  "name": "AJAX 请求测试页面",
+  "version": "0.1.0",
+  "description": "apiDoc 示例 AJAX 请求测试页面",
+  "title": "这是个精致的api文档",
+  "url": "http://127.0.0.1/api",
+  "header": {
+    "title": "介绍",
+    "filename": "./apidocmd/header.md"
+  }
+}

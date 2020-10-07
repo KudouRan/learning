@@ -1,0 +1,9 @@
+body {
+  background-color: cornsilk;
+}
+
+.img {
+  width: 263.25px;
+  height: 180px;
+  background: url(../images/demkivhq.bmp) center;
+}

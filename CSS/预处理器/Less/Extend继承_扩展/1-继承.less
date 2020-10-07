@@ -1,0 +1,13 @@
+//简单继承,继承的只能是.inline
+nav ul {
+  &:extend(.inline);
+  background: blue;
+}
+
+.inline {
+  color: red;
+}
+
+div:extend(.inline) {
+  display: flex;
+}

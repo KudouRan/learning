@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../vuejs/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="counter">
+      Counter: {{ state.counter }}
+      <button @click="increment">+</button>
+    </div>
+
+    <script>
+      //导入reactive
+      const { reactive } = Vue;
+
+      const Counter = {
+        setup() {
+          const state = reactive({
+            counter: 1,
+          });
+
+          function increment() {
+            state.counter++;
+          }
+
+          return {
+            state,
+            increment,
+          };
+        },
+      };
+
+      Vue.createApp(Counter).mount('#counter');
+    </script>
+  </body>
+</html>

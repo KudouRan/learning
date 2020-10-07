@@ -1,0 +1,37 @@
+
+POST http://localhost:7001/user/add
+Content-Type: application/json
+
+{
+  "username" :"李四",
+  "password" :"lisipassword"
+}
+
+###
+
+GET http://localhost:7001/user
+Accept: application/json
+
+###
+
+GET http://localhost:7001/user/李四
+Accept: application/json
+
+###
+
+POST http://localhost:7001/user/remove
+Content-Type: application/json
+
+{
+  "username" :"张三"
+}
+
+###
+
+POST http://localhost:7001/user/modify
+Content-Type: application/json
+
+{
+  "username" :"张三",
+  "password" :"10086"
+}
