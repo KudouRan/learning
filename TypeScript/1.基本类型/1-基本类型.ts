@@ -133,7 +133,7 @@ declare function create(o: object | null): void;
  */
 
 //下面两种是等效的
-//但是在使用jsx和ts时,只能用as,不能用<>的方式
+//但是在使用jsx和tsx时,只能用as,不能用<>的方式
 
 let someValue: any = 'this is a string';
 

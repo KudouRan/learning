@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <my-component-a></my-component-a>
+      <my-component-b></my-component-b>
+    </div>
+    <script type="module">
+      import { createApp } from '../vuejs/vue.esm-browser.js';
+
+      const app = createApp({});
+
+      app.component('my-component-a', {
+        template: '<div>这是一个组件a</div>',
+      });
+
+      app.component('my-component-b', {
+        template: `
+        <div>这是一个组件b</div>
+        <my-component-a></my-component-a>
+        `,
+      });
+
+      //必须要写到后面
+      app.mount('#app');
+    </script>
+  </body>
+</html>

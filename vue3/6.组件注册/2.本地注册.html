@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <my-component-a></my-component-a>
+      <my-component-b></my-component-b>
+    </div>
+    <template id="ca">
+      <div>这是一个组件a</div>
+    </template>
+    <template id="cb">
+      <div>这是一个组件b</div>
+      <!-- 由于不是全局注册的组件,所以不能再b上使用,只能在app(注册的地方)使用 -->
+      <!-- <my-component-a></my-component-a> -->
+      <!-- 在b上面注册的b-a是可以用的 -->
+      <my-component-b-a></my-component-b-a>
+    </template>
+    <script type="module">
+      import { createApp } from '../vuejs/vue.esm-browser.js';
+
+      const MyComponentA = {
+        template: '#ca',
+      };
+
+      const App = {
+        components: {
+          'my-component-a': MyComponentA,
+          'my-component-b': {
+            template: '#cb',
+            components: {
+              'my-component-b-a': {
+                template: '#ca',
+              },
+            },
+          },
+        },
+      };
+
+      const app = createApp(App);
+      app.mount('#app');
+    </script>
+  </body>
+</html>
