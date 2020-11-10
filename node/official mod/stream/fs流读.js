@@ -3,7 +3,7 @@ const fs = require("fs");
 let data = '';
 
 //创建可读流
-const readerStream = fs.createReadStream('input.txt', {
+const readerStream = fs.createReadStream('text.txt', {
   highWaterMark: 1 * 1024 //设置每次最大为1k
 });
 
@@ -12,7 +12,7 @@ readerStream.setEncoding('UTF8');
 
 //处理流事件 --> data, end, and error
 readerStream.on('data', function (chunk) {
-  // data += chunk;
+  data += chunk;
   console.log('data');
   console.log(chunk);
   console.log('--------分割线-----------------------------------------------------------------------');

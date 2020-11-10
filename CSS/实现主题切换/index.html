@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <h4>Lorem ipsum dolor sit amet.</h4>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo unde fuga
+      rerum dolores eaque quam ipsa perferendis esse molestiae hic cumque in
+      neque blanditiis laudantium magni, provident, labore, consequatur saepe.
+    </p>
+    <p>
+      <button class="toggle">切换主题</button>
+    </p>
+    <script>
+      const toggleBtn = document.querySelector('.toggle');
+
+      let mode = localStorage.getItem('mode');
+
+      const prefersColorScheme = window.matchMedia(
+        '(prefers-color-scheme: dark)'
+      );
+
+      !mode &&
+        (prefersColorScheme.matches ? enableDarkMode() : disableDarkMode());
+
+      if (mode === 'dark') enableDarkMode();
+
+      toggleBtn.addEventListener('click', () => {
+        mode = localStorage.getItem('mode');
+
+        if (mode === 'dark') {
+          disableDarkMode();
+        } else {
+          enableDarkMode();
+        }
+      });
+
+      function enableDarkMode() {
+        document.body.classList.add('mode-dark');
+        localStorage.setItem('mode', 'dark');
+      }
+      function disableDarkMode() {
+        document.body.classList.remove('mode-dark');
+        localStorage.setItem('mode', 'light');
+      }
+
+      prefersColorScheme.addListener((e) =>
+        e.matches ? enableDarkMode() : disableDarkMode()
+      );
+
+      // window
+      //   .matchMedia('(prefers-color-scheme: dark)')
+      //   .addEventListener('change', (e) =>
+      //     e.matches ? enableDarkMode() : disableDarkMode()
+      //   );
+    </script>
+  </body>
+</html>

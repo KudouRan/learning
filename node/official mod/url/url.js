@@ -6,7 +6,9 @@ const myURL = new URL(testURL);
 
 const testURL1 = url.format(myURL, {
   auth: false,
-  fragment: false,
+  fragment: true,
   search: false,
-  unicode: true
-})
+  unicode: true,
+});
+
+console.log(testURL1);

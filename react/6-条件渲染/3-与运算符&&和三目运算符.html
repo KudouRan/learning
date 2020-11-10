@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      src="../bin/babel-standalone@6.26.0.babel.min.js"
+      crossorigin
+    ></script>
+    <script src="../bin/@16.14.0.umd.react.development.js" crossorigin></script>
+    <script
+      src="../bin/@16.14.0.umd.react-dom.development.js"
+      crossorigin
+    ></script>
+    <script type="text/babel">
+      //可以在jsx中嵌入任何js表达式,&&和三目运算符都可,if这种语句就别试了
+      function Mailbox(props) {
+        const unreadMessages = props.unreadMessages;
+        return (
+          <div>
+            <h1>Hello!</h1>
+            {unreadMessages.length > 2 && (
+              <h2>You have {unreadMessages.length} unread messages.</h2>
+            )}
+            <h1>这是三目运算符测试</h1>
+            unreadMessages.length &gt; 2 :{' '}
+            {unreadMessages.length > 2 ? '大于' : '不大于'}
+          </div>
+        );
+      }
+
+      const messages = ['React', 'Re: React', 'Re:Re: React'];
+      ReactDOM.render(
+        <Mailbox unreadMessages={messages} />,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
+</html>

@@ -7,7 +7,7 @@
     <button @click="testB1">点击</button>
     <hr>
     <h2>getters测试</h2>
-    <p>调用方法$store.getters['b/testB2'],不能使用点</p>
+    <p>调用方法$store.getters['b/testB2'],不能使用点只能用['string']</p>
     <p>{{$store.getters['b/testB2']}}</p>
     <hr>
     <h2>action中commit(root中mutation)</h2>

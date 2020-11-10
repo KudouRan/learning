@@ -16,11 +16,13 @@ console.log(path.dirname('/foo/bar/baz/asdf/quux.txt'));
 console.log(path.extname('/foo/bar/baz/asdf/quux.md'));
 
 //将对象返回路径
-console.log(path.format({
-  root: '/',
-  name: 'file',
-  ext: '.txt'
-}));
+console.log(
+  path.format({
+    root: '/',
+    name: 'file',
+    ext: '.txt',
+  })
+);
 
 //确定是否是绝对路径
 console.log(path.isAbsolute('/foo/bar'));
@@ -43,6 +45,7 @@ console.log(path.relative('/data/orandea/test/aaa', '/data/orandea/impl/bbb'));
 
 //返回绝对路径path.resolve([...paths])
 console.log(path.resolve());
+console.log(path.resolve(__dirname, __filename));
 
 //仅在windows有效,给路径增加前缀
 console.log(path.toNamespacedPath('/data/orandea/test/aaa'));

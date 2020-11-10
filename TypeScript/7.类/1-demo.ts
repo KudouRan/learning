@@ -10,11 +10,3 @@ class Greeter {
 let greeter = new Greeter('world');
 
 console.log(greeter.greet());
-
-class Animal {
-  static move(distanceInMeters: number = 0) {
-    console.log(`Animal moved ${distanceInMeters}m.`);
-  }
-}
-
-Animal.move();

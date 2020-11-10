@@ -1,61 +1,67 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+
+// then had to add in ./store.js as well.
+Vue.config.devtools = process.env.NODE_ENV === 'development';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: { //类似与vue的data
+  state: {
+    //类似与vue的data
     counter: 123,
     students: [
       {
         name: 'catlair',
-        age: 19
+        age: 19,
       },
       {
-        name: "demo",
-        age: 12
+        name: 'demo',
+        age: 12,
       },
       {
         name: 'test',
-        age: 20
+        age: 20,
       },
       {
         name: 'zhangsan',
-        age: 16
-      }
+        age: 16,
+      },
     ],
     info: {
-      time: 2020
-    }
+      time: 2020,
+    },
   },
-  getters: { //计算state的派生状态
+  getters: {
+    //计算state的派生状态
     powerCounter(state) {
       //其实还可以传递第二个参数,getters,代表所有的getters
       return state.counter * state.counter;
     },
     more18stu(state) {
-      return state.students.filter(s => s.age > 18);
-    }
+      return state.students.filter((s) => s.age > 18);
+    },
   },
-  mutations: { //更改state
+  mutations: {
+    //更改state
     increment(state) {
-      state.counter++
+      state.counter++;
     },
     decrement(state) {
       state.counter--;
     },
     //这是响应式的使用例子
     //1.修改本来就有的属性
-    updateCatlairName({students}) {
+    updateCatlairName({ students }) {
       students[0].name = '修改了';
     },
     //添加新的属性
-    appendCatlairSex({students}) {
+    appendCatlairSex({ students }) {
       //错误的方法
       students[0].sex = '女';
       console.log(students[0].sex);
     },
-    setCatlairSex({students}) {
+    setCatlairSex({ students }) {
       //正确的方法
       //1. 用Vue.set
       Vue.set(students[0], 'sex', '女');
@@ -67,7 +73,7 @@ export default new Vuex.Store({
     },
     setInfo(state) {
       //这里不能使用解构赋值来获取info,不然连vue-tools都检测不了
-      state.info = {...state.info, address: '武汉'};
+      state.info = { ...state.info, address: '武汉' };
     },
     //下面是提交载荷的使用例子
     // updateCount(state, num) {
@@ -87,7 +93,7 @@ export default new Vuex.Store({
     aUpdateStu(state) {
       const stu = {
         name: 'mutation中',
-        age: 24
+        age: 24,
       };
       //模仿异步添加
       new Promise((resolve, reject) => {
@@ -97,17 +103,17 @@ export default new Vuex.Store({
         }, 1000);
       }).then(() => {
         setTimeout(() => {
-          alert('异步添加完成')
-        }, 0)
+          alert('异步添加完成');
+        }, 0);
       });
     },
     updateStu(state) {
       const stu = {
         name: 'action中',
-        age: 24
+        age: 24,
       };
       state.students.push(stu);
-    }
+    },
   },
   actions: {
     // actionUpdateStu(context) {
@@ -117,7 +123,7 @@ export default new Vuex.Store({
     // }
 
     //下面这是配合ES6的用法,实际上getter,mutation等也能这么用
-    actionUpdateStu({commit}) {
+    actionUpdateStu({ commit }) {
       new Promise((resolve, reject) => {
         setTimeout(() => {
           commit('updateStu');
@@ -125,14 +131,14 @@ export default new Vuex.Store({
         }, 1000);
       }).then(() => {
         setTimeout(() => {
-          alert('异步添加完成')
-        }, 0)
+          alert('异步添加完成');
+        }, 0);
       });
-        //  setTimeout(() => {
-        //   commit('updateStu');
-        // }, 1000);
-    }
+      //  setTimeout(() => {
+      //   commit('updateStu');
+      // }, 1000);
+    },
   },
   //modules单独使用个新的项目表示
-  modules: {}
-})
+  modules: {},
+});

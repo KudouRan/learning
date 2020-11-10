@@ -1,0 +1,10 @@
+a {
+  color: cadetblue;
+
+  &:hover {
+    color: burlywood;
+  }
+  &:active {
+    color: springgreen;
+  }
+}

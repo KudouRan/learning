@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<div id="root"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="root"></div>
 
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
-<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-<script type="text/babel">
-  class Toggle extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {isToggleOn: true};
+    <script
+      src="../bin/babel-standalone@6.26.0.babel.min.js"
+      crossorigin
+    ></script>
+    <script src="../bin/@16.14.0.umd.react.development.js" crossorigin></script>
+    <script
+      src="../bin/@16.14.0.umd.react-dom.development.js"
+      crossorigin
+    ></script>
+    <script type="text/babel">
+      class Toggle extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { isToggleOn: true };
 
-    // 为了在回调中使用 `this`，这个绑定是必不可少的
-    this.handleClick = this.handleClick.bind(this);
-  }
+          // 为了在回调中使用 `this`，这个绑定是必不可少的
+          this.handleClick = this.handleClick.bind(this);
+        }
 
-  handleClick() {
-    this.setState(state => ({
-      isToggleOn: !state.isToggleOn
-    }));
-  }
+        handleClick() {
+          this.setState((state) => ({
+            isToggleOn: !state.isToggleOn,
+          }));
+        }
 
-  render() {
-    return (
-      <button onClick={this.handleClick}>
-        {this.state.isToggleOn ? '开' : '关'}
-      </button>
-    );
-  }
-}
+        render() {
+          return (
+            <button onClick={this.handleClick}>
+              {this.state.isToggleOn ? '开' : '关'}
+            </button>
+          );
+        }
+      }
 
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('root')
-);
-</script>
-</body>
+      ReactDOM.render(<Toggle />, document.getElementById('root'));
+    </script>
+  </body>
 </html>

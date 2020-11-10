@@ -1,72 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<div id="root"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="root"></div>
 
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
-<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-<script type="text/babel">
+    <script
+      src="../bin/babel-standalone@6.26.0.babel.min.js"
+      crossorigin
+    ></script>
+    <script src="../bin/@16.14.0.umd.react.development.js" crossorigin></script>
+    <script
+      src="../bin/@16.14.0.umd.react-dom.development.js"
+      crossorigin
+    ></script>
+    <script type="text/babel">
+      //当需要处理多个 input 元素时，
+      // 我们可以给每个元素添加 name 属性，
+      // 并让处理函数根据 event.target.name 的值选择要执行的操作。
+      class Reservation extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            isGoing: true,
+            numberOfGuests: 2,
+          };
 
-  //当需要处理多个 input 元素时，
-  // 我们可以给每个元素添加 name 属性，
-  // 并让处理函数根据 event.target.name 的值选择要执行的操作。
-  class Reservation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isGoing: true,
-      numberOfGuests: 2
-    };
+          this.handleInputChange = this.handleInputChange.bind(this);
+        }
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-  }
+        handleInputChange(event) {
+          const target = event.target;
+          const value =
+            target.name === 'isGoing' ? target.checked : target.value;
+          const name = target.name;
 
-  handleInputChange(event) {
-    const target = event.target;
-    const value = target.name === 'isGoing' ? target.checked : target.value;
-    const name = target.name;
+          //这里是使用ES6计算属性名为其赋值
+          this.setState({
+            [name]: value,
+          });
+        }
 
-    //这里是使用ES6计算属性名为其赋值
-    this.setState({
-      [name]: value
-    });
-  }
+        render() {
+          return (
+            <form>
+              <label>
+                参与:
+                <input
+                  name="isGoing"
+                  type="checkbox"
+                  checked={this.state.isGoing}
+                  onChange={this.handleInputChange}
+                />
+              </label>
+              <br />
+              <label>
+                来宾人数:
+                <input
+                  name="numberOfGuests"
+                  type="number"
+                  value={this.state.numberOfGuests}
+                  onChange={this.handleInputChange}
+                />
+              </label>
+            </form>
+          );
+        }
+      }
 
-  render() {
-    return (
-      <form>
-        <label>
-          参与:
-          <input
-            name="isGoing"
-            type="checkbox"
-            checked={this.state.isGoing}
-            onChange={this.handleInputChange} />
-        </label>
-        <br />
-        <label>
-          来宾人数:
-          <input
-            name="numberOfGuests"
-            type="number"
-            value={this.state.numberOfGuests}
-            onChange={this.handleInputChange}
-          />
-        </label>
-      </form>
-    );
-  }
-}
-
-  ReactDOM.render(
-      <Reservation/>,
-      document.getElementById('root')
-  );
-</script>
-</body>
+      ReactDOM.render(<Reservation />, document.getElementById('root'));
+    </script>
+  </body>
 </html>

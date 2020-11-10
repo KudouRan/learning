@@ -5,7 +5,7 @@ const querystring = require('querystring');
 http
   .createServer((req, res) => {
     let post = '';
-    req.on('data', chunk => {
+    req.on('data', (chunk) => {
       post += chunk;
     });
     req.on('end', () => {

@@ -1,0 +1,39 @@
+:root .mode-dark {
+  --paimary-bg: #282c35;
+  --paimary-fg: #fff;
+  --secondary-bg: #1e2129;
+  --secondary-fg: #aaa;
+  --paimary-btn-bg: #780404;
+  --paimary-btn-fg: #baba6a;
+}
+:root {
+  --paimary-bg: #eee;
+  --paimary-fg: #000;
+  --secondary-bg: #ddd;
+  --secondary-fg: #555;
+  --paimary-btn-bg: #f00;
+  --paimary-btn-fg: #ff0;
+}
+* {
+  margin: 0;
+  border: 0;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--paimary-bg);
+  color: var(--paimary-fg);
+}
+h1 {
+  background-color: var(--secondary-bg);
+  color: var(--secondary-fg);
+}
+
+.toggle {
+  width: 160px;
+  height: 40px;
+  margin-top: 20px;
+  margin-left: 100px;
+  background-color: var(--paimary-btn-bg);
+  color: var(--paimary-btn-fg);
+}

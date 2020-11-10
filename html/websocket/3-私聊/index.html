@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const ws = new WebSocket('ws://localhost:3000');
+
+      let user = null;
+      console.log('请输入用户名,例如 ', `user = '小明'`);
+
+      console.log(`发送消息格式:msg('消息','小红')`);
+
+      const msg = (m, to) => {
+        if (!user) {
+          console.log('你是用了匿名');
+          user = '匿名';
+        }
+        return ws.send(JSON.stringify({ user, to, msg: m }));
+      };
+
+      ws.onopen = function (event) {
+        // Web Socket 已连接上，使用 send() 方法发送数据
+        console.log('连接成功', event);
+      };
+
+      ws.onclose = function (event) {
+        console.log('关闭成功', event);
+      };
+
+      ws.onmessage = function (event) {
+        console.log('收到来自服务端的消息 ', event);
+        // 处理数据
+      };
+    </script>
+  </body>
+</html>

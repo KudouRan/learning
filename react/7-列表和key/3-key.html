@@ -1,41 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<div id="root"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="root"></div>
 
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
-<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-<script type="text/babel">
-  //和vue一样,key都是用来识别那些元素被改变了
-  //在万不得已时才可以使用index,因为列表项会改变,导致index改变,从而引起组件状态问题
-  //不用key,react会隐式使用index,不过好像会报错,让添加key
+    <script
+      src="../bin/babel-standalone@6.26.0.babel.min.js"
+      crossorigin
+    ></script>
+    <script src="../bin/@16.14.0.umd.react.development.js" crossorigin></script>
+    <script
+      src="../bin/@16.14.0.umd.react-dom.development.js"
+      crossorigin
+    ></script>
+    <script type="text/babel">
+      //和vue一样,key都是用来识别那些元素被改变了
+      //在万不得已时才可以使用index,因为列表项会改变,导致index改变,从而引起组件状态问题
+      //不用key,react会隐式使用index,不过好像会报错,让添加key
 
-  function ListItem(props) {
-    // 正确！这里不需要指定 key：
-    return <li>{props.value}</li>;
-  }
+      function ListItem(props) {
+        // 正确！这里不需要指定 key：
+        return <li>{props.value}</li>;
+      }
 
-  function NumberList(props) {
-    const numbers = props.numbers;
-     // 正确！key 应该在数组的上下文中被指定
-    const listItems = numbers.map(number => <ListItem key={number.toString()} value={number}/>);
-    return (
-        <ul>
-          {listItems}
-        </ul>
-    );
-  }
+      function NumberList(props) {
+        const numbers = props.numbers;
+        // 正确！key 应该在数组的上下文中被指定
+        const listItems = numbers.map((number) => (
+          <ListItem key={number.toString()} value={number} />
+        ));
+        return <ul>{listItems}</ul>;
+      }
 
-  const numbers = [1, 2, 3, 4, 5];
-  ReactDOM.render(
-      <NumberList numbers={numbers}/>,
-      document.getElementById('root')
-  );
-</script>
-</body>
+      const numbers = [1, 2, 3, 4, 5];
+      ReactDOM.render(
+        <NumberList numbers={numbers} />,
+        document.getElementById('root')
+      );
+    </script>
+  </body>
 </html>

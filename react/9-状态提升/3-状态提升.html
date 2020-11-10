@@ -1,134 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<div id="root"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="root"></div>
 
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
-<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-<script type="text/babel">
-  //新的需求是在摄氏温度基础上添加华氏温度输入框并保持同步
+    <script
+      src="../bin/babel-standalone@6.26.0.babel.min.js"
+      crossorigin
+    ></script>
+    <script src="../bin/@16.14.0.umd.react.development.js" crossorigin></script>
+    <script
+      src="../bin/@16.14.0.umd.react-dom.development.js"
+      crossorigin
+    ></script>
+    <script type="text/babel">
+      //新的需求是在摄氏温度基础上添加华氏温度输入框并保持同步
 
-  //判断水沸并输出
-  function BoilingVerdict(props) {
-    if (props.celsius >= 100) {
-      return <p>The water would boil.</p>;
-    }
-    return <p>The water would not boil.</p>;
-  }
+      //判断水沸并输出
+      function BoilingVerdict(props) {
+        if (props.celsius >= 100) {
+          return <p>The water would boil.</p>;
+        }
+        return <p>The water would not boil.</p>;
+      }
 
-  const scaleNames = {
-    c: 'Celsius',
-    f: 'Fahrenheit'
-  };
-
-
-  class TemperatureInput extends React.Component {
-    constructor(props) {
-      super(props);
-      this.handleChange = this.handleChange.bind(this);
-      //不需要自己的状态了
-      // this.state = {temperature: ''};
-    }
-
-    handleChange(e) {
-      // this.setState({temperature: e.target.value});
-      this.props.onTemperatureChange(e.target.value);
-    }
-
-    //提升前的准备修改state为props
-    render() {
-      const temperature = this.props.temperature;
-      const scale = this.props.scale;
-      return (
-          <fieldset>
-            <legend>Enter temperature in {scaleNames[scale]}:</legend>
-            <label>
-              <input value={temperature}
-                     onChange={this.handleChange}/>
-            </label>
-          </fieldset>
-      );
-    }
-  }
-
-  //Calculator中实现两个输入框,但是,输入框和BoilingVerdict(沸水判定)将如何联系呢
-  class Calculator extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        temperature: '',
-        scale: 'c'
+      const scaleNames = {
+        c: 'Celsius',
+        f: 'Fahrenheit',
       };
-      this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
-      this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
-    }
 
-    handleCelsiusChange(temperature) {
-      //ES6对象写法
-      this.setState({scale: 'c', temperature});
-    }
+      class TemperatureInput extends React.Component {
+        constructor(props) {
+          super(props);
+          this.handleChange = this.handleChange.bind(this);
+          //不需要自己的状态了
+          // this.state = {temperature: ''};
+        }
 
-    handleFahrenheitChange(temperature) {
-      this.setState({scale: 'f', temperature});
-    }
+        handleChange(e) {
+          // this.setState({temperature: e.target.value});
+          this.props.onTemperatureChange(e.target.value);
+        }
 
-    render() {
-      const scale = this.state.scale;
-      const temperature = this.state.temperature;
-      const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
-      const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
-      //注意:onTemperatureChange只是习惯命名,没有特殊含义
-      return (
-          <div>
-            <TemperatureInput
+        //提升前的准备修改state为props
+        render() {
+          const temperature = this.props.temperature;
+          const scale = this.props.scale;
+          return (
+            <fieldset>
+              <legend>Enter temperature in {scaleNames[scale]}:</legend>
+              <label>
+                <input value={temperature} onChange={this.handleChange} />
+              </label>
+            </fieldset>
+          );
+        }
+      }
+
+      //Calculator中实现两个输入框,但是,输入框和BoilingVerdict(沸水判定)将如何联系呢
+      class Calculator extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            temperature: '',
+            scale: 'c',
+          };
+          this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+          this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+        }
+
+        handleCelsiusChange(temperature) {
+          //ES6对象写法
+          this.setState({ scale: 'c', temperature });
+        }
+
+        handleFahrenheitChange(temperature) {
+          this.setState({ scale: 'f', temperature });
+        }
+
+        render() {
+          const scale = this.state.scale;
+          const temperature = this.state.temperature;
+          const celsius =
+            scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+          const fahrenheit =
+            scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+          //注意:onTemperatureChange只是习惯命名,没有特殊含义
+          return (
+            <div>
+              <TemperatureInput
                 scale="c"
                 temperature={celsius}
                 onTemperatureChange={this.handleCelsiusChange}
-            />
-            <TemperatureInput
+              />
+              <TemperatureInput
                 scale="f"
                 temperature={fahrenheit}
                 onTemperatureChange={this.handleFahrenheitChange}
-            />
-            <BoilingVerdict
-                celsius={parseFloat(celsius)}
-            />
-          </div>
-      );
-    }
-  }
+              />
+              <BoilingVerdict celsius={parseFloat(celsius)} />
+            </div>
+          );
+        }
+      }
 
-  //首先写转换函数,摄氏度和华氏度互相转换
-  function toCelsius(fahrenheit) {
-    return (fahrenheit - 32) * 5 / 9;
-  }
+      //首先写转换函数,摄氏度和华氏度互相转换
+      function toCelsius(fahrenheit) {
+        return ((fahrenheit - 32) * 5) / 9;
+      }
 
-  function toFahrenheit(celsius) {
-    return (celsius * 9 / 5) + 32;
-  }
+      function toFahrenheit(celsius) {
+        return (celsius * 9) / 5 + 32;
+      }
 
-  //整合转换函数,准备工做好,(3)进行完善
-  function tryConvert(temperate, convert) {
-    const input = parseFloat(temperate);
-    if (Number.isNaN(input)) {
-      return '';
-    }
-    const output = convert(input);
-    //保留小数点后三位
-    const rounded = Math.round(output * 1000) / 1000;
-    return rounded.toString();
-  }
+      //整合转换函数,准备工做好,(3)进行完善
+      function tryConvert(temperate, convert) {
+        const input = parseFloat(temperate);
+        if (Number.isNaN(input)) {
+          return '';
+        }
+        const output = convert(input);
+        //保留小数点后三位
+        const rounded = Math.round(output * 1000) / 1000;
+        return rounded.toString();
+      }
 
-  ReactDOM.render(
-      <Calculator/>,
-      document.getElementById('root')
-  );
-
-</script>
-</body>
+      ReactDOM.render(<Calculator />, document.getElementById('root'));
+    </script>
+  </body>
 </html>

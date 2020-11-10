@@ -1,0 +1,10 @@
+/* 通过媒体查询检测系统主题色变化 */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paimary-bg: #282c35;
+    --paimary-fg: #fff;
+    --secondary-bg: #1e2129;
+    --secondary-fg: #aaa;
+  }
+}

@@ -1,47 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<div id="root"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="root"></div>
 
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
-<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-<script type="text/babel">
-  //类似于vue的命名插槽,children是默认名字,还可以自定义
-  //官网确实是这么说的,也许你会联想到插槽,但是react没有这个,,因为props能传递任何东西
-  function SplitPane(props) {
-    return (
-        <div className="SplitPane">
-          <div className="SplitPane-left">
-            {props.left}
+    <script
+      src="../../bin/babel-standalone@6.26.0.babel.min.js"
+      crossorigin
+    ></script>
+    <script src="../../bin/@16.14.0.umd.react.development.js" crossorigin></script>
+    <script
+      src="../../bin/@16.14.0.umd.react-dom.development.js"
+      crossorigin
+    ></script>
+    <script type="text/babel">
+      //类似于vue的命名插槽,children是默认名字,还可以自定义
+      //官网确实是这么说的,也许你会联想到插槽,但是react没有这个,,因为props能传递任何东西
+      function SplitPane(props) {
+        return (
+          <div className="SplitPane">
+            <div className="SplitPane-left">{props.left}</div>
+            <div className="SplitPane-right">{props.right}</div>
           </div>
-          <div className="SplitPane-right">
-            {props.right}
-          </div>
-        </div>
-    )
-  }
+        );
+      }
 
-  function App() {
-    return (
-        <SplitPane
-            left={
-              <h2>这里是left</h2>
-            }
-            right={
-              <h2>这里是right</h2>
-            }/>
-    )
-  }
+      function App() {
+        return (
+          <SplitPane left={<h2>这里是left</h2>} right={<h2>这里是right</h2>} />
+        );
+      }
 
-  ReactDOM.render(
-      <App/>,
-      document.getElementById('root')
-  )
-</script>
-</body>
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
 </html>

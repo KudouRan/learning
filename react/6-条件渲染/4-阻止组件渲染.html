@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<div id="root"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="root"></div>
 
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js" crossorigin></script>
-<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-<script type="text/babel">
-function WarningBanner(props) {
-  //如果不想渲染就返回null
-  if (!props.warn) {
-    return null;
-  }
+    <script
+      src="../bin/babel-standalone@6.26.0.babel.min.js"
+      crossorigin
+    ></script>
+    <script src="../bin/@16.14.0.umd.react.development.js" crossorigin></script>
+    <script
+      src="../bin/@16.14.0.umd.react-dom.development.js"
+      crossorigin
+    ></script>
+    <script type="text/babel">
+      function WarningBanner(props) {
+        //如果不想渲染就返回null
+        if (!props.warn) {
+          return null;
+        }
 
-  return (
-    <div className="warning">
-      Warning!
-    </div>
-  );
-}
+        return <div className="warning">Warning!</div>;
+      }
 
-class Page extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {showWarning: true};
-    this.handleToggleClick = this.handleToggleClick.bind(this);
-  }
+      class Page extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { showWarning: true };
+          this.handleToggleClick = this.handleToggleClick.bind(this);
+        }
 
-  handleToggleClick() {
-    this.setState(state => ({
-      showWarning: !state.showWarning
-    }));
-  }
+        handleToggleClick() {
+          this.setState((state) => ({
+            showWarning: !state.showWarning,
+          }));
+        }
 
-  render() {
-    return (
-      <div>
-        <WarningBanner warn={this.state.showWarning} />
-        <button onClick={this.handleToggleClick}>
-          {this.state.showWarning ? 'Hide' : 'Show'}
-        </button>
-      </div>
-    );
-  }
-}
+        render() {
+          return (
+            <div>
+              <WarningBanner warn={this.state.showWarning} />
+              <button onClick={this.handleToggleClick}>
+                {this.state.showWarning ? 'Hide' : 'Show'}
+              </button>
+            </div>
+          );
+        }
+      }
 
-ReactDOM.render(
-  <Page />,
-  document.getElementById('root')
-);
-</script>
-</body>
+      ReactDOM.render(<Page />, document.getElementById('root'));
+    </script>
+  </body>
 </html>
