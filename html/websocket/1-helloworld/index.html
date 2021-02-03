@@ -18,10 +18,16 @@
         console.log('关闭成功', event);
       };
 
+      ws.onerror = function (event) {
+        console.log('出现错误', event);
+      };
+
       ws.onmessage = function (event) {
         console.log('收到来自服务端的消息 ' + event.data);
         // 处理数据
       };
+
+      // ws.send('这是一个消息')
     </script>
   </body>
 </html>

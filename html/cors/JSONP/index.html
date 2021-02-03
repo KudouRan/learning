@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../libs/xhr.js"></script>
+  </head>
+  <body>
+    <button class="pt">点击我请求数据(会出现跨域)</button>
+    <button class="jsonp">点击我请求数据(jsonp)</button>
+    <script>
+      document.querySelector('.pt').addEventListener('click', () => {
+        makeXHR();
+      });
+
+      document.querySelector('.jsonp').addEventListener('click', () => {
+        let script = document.createElement('script');
+        script.src = 'http://127.0.0.1:3001?callback=jsonpfun';
+        document.body.appendChild(script);
+        script.remove();
+      });
+
+      function jsonpfun(data) {
+        console.log(data);
+        alert(data);
+      }
+    </script>
+  </body>
+</html>

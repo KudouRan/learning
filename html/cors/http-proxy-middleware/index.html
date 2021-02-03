@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>http-proxy-middleware</title>
+    <script src="../libs/xhr.js"></script>
+  </head>
+  <body>
+    <button>点击请求</button>
+    <script>
+      //需要运行的后端是jsonp-pr.js
+
+      document.querySelector('button').addEventListener('click', () => {
+        makeXHR({
+          baseurl: 'http://127.0.0.1:9000',
+          path: '/api',
+        });
+      });
+    </script>
+  </body>
+</html>

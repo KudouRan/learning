@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../libs/xhr.js"></script>
+  </head>
+  <body>
+    <p><button class="ty">点击我请求数据(同域请求)</button></p>
+    <p><button class="get">点击我请求数据(get-失败)</button></p>
+    <p><button class="get-success">点击我请求数据(get-能成功)</button></p>
+    <p><button class="post">点击我请求数据(post-简单请求)</button></p>
+    <p><button class="post-2">点击我请求数据(post-非简单请求)</button></p>
+
+    <script>
+      //同域
+      document.querySelector('.ty').addEventListener('click', async () => {
+        let data = await fetch('../JSONP/index.html');
+        console.log(data);
+      });
+      //请求没有处理的接口
+      document.querySelector('.get').addEventListener('click', () => {
+        makeXHR();
+      });
+      //请求处理后的接口 'Access-Control-Allow-Origin': '*'
+      document.querySelector('.get-success').addEventListener('click', () => {
+        makeXHR({ path: '/success' });
+      });
+      //简单请求-post
+      document.querySelector('.post').addEventListener('click', () => {
+        makeXHR({
+          method: 'POST',
+          body: JSON.stringify({ username: 'catlair', password: 'abcdef' }),
+        });
+      });
+      //非简单请求-post-application/json
+      document.querySelector('.post-2').addEventListener('click', () => {
+        makeXHR({
+          method: 'POST',
+          path: '/post-json',
+          body: JSON.stringify({ username: 'catlair', password: '123456' }),
+          header: {
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

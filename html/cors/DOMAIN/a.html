@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A页面</title>
+  </head>
+  <body>
+    <iframe id="iframe" src="http://127.0.0.1:4002/DOMAIN/b.html"></iframe>
+    a页面
+    <script>
+      const iframe = document.getElementById('iframe');
+      document.domain = '127.0.0.1';
+      console.log(iframe.contentWindow.document);
+    </script>
+  </body>
+</html>
