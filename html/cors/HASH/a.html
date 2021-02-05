@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A页面</title>
+    <style>
+      iframe {
+        width: 400px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    A页面
+    <iframe
+      src="http://127.0.0.1:4002/HASH/b.html#Iloveyou"
+      id="frame"
+    ></iframe>
+    <script>
+      // 使用 hashchange 事件接收来自 C 页面设置给 A 页面的 hash 值
+      window.onhashchange = function () {
+        if (location.hash === '') return;
+        console.log(location.hash);
+        alert(location.hash);
+        location.hash = '';
+      };
+    </script>
+  </body>
+</html>

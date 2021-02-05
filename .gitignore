@@ -1,4 +1,5 @@
 .vscode/
+!.vscode/setting.json
 .idea/
 node_modules/
 node/**/images

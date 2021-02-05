@@ -23,5 +23,28 @@ npm run jsonp
 ## postMessage
 
 npm run static
-4001 端口 --> a(或者 live-server 打开 5500 端口)
-4002 端口 --> b
+4001 端口 -->postMessage a(或者 live-server 打开 5500 端口)
+4002 端口 -->postMessage b
+
+## document.domain
+
+npm run static
+
+4001 --> a.html
+4002 --> b.html
+
+## window.name
+
+npm run static
+
+4001 --> a.html
+4002 --> b.html
+4001 --> porxy.html
+
+## location.hash
+
+npm run static
+
+4001 --> a.html
+4002 --> b.html
+4001 --> c.html

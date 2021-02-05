@@ -11,6 +11,7 @@ enum Direction {
 
 //使用
 console.log(Direction.Right); //4
+console.log(Direction[1]);
 
 //没有初始化的枚举成员要么是第一个(默认是0)
 //要么在其他给了值得成员后面(+1)

@@ -3,16 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>b页面</title>
+    <title>C页面</title>
   </head>
   <body>
-    b页面
+    C页面
     <script>
-      document.domain = document.domain;
-
-      console.log(window.parent.user);
-
-      window.user = '蓝兔';
+      // 将 C 页面引入 B 页面设置的 hash 值设置给 A页面
+      window.parent.parent.location.hash = location.hash;
     </script>
   </body>
 </html>

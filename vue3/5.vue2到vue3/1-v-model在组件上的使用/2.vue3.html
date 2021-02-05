@@ -19,6 +19,7 @@
       <div>
         <button @click="clickFun">随机值</button>
         <!-- 下面写法对应上面两种方法 -->
+        <!-- 这不是什么特殊语法,这只是逻辑或 -->
         {{modelValue | value}}
       </div>
     </template>
@@ -31,8 +32,8 @@
             template: '#cpn',
             props: {
               //同样对应两种写法
-              modelValue: String,
-              value: String,
+              modelValue: String, //  <Cpn v-model="title"></Cpn>
+              value: String, // <Cpn v-model:value="title"></Cpn>
             },
             methods: {
               clickFun() {

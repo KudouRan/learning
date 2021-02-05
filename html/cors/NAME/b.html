@@ -3,16 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>b页面</title>
+    <title>B页面</title>
   </head>
   <body>
-    b页面
+    B页面
     <script>
-      document.domain = document.domain;
-
-      console.log(window.parent.user);
-
-      window.user = '蓝兔';
+      const json = { name: 'catlair' };
+      window.name = JSON.stringify(json);
     </script>
   </body>
 </html>

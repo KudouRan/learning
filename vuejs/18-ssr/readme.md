@@ -5,4 +5,5 @@
 - `demo3` : `demo2`的基础上增加了`vue-router`,以及通过官方提供的`webpack`插件`VueSSRClientPlugin`，`VueSSRServerPlugin`对文件打包和插入
 
 - `demo4` : 使用`vue-cli`的组件模板,但是没用使用`vue-cli`
+- `demo5` : 使用`vue-cli`
 

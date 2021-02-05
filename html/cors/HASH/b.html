@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B页面</title>
+  </head>
+  <body>
+    B页面
+    <script>
+      // 打印 A 页面引入 B 页面设置的 hash 值
+      console.log(location.hash);
+      //这样直接设置会出现跨域
+      // window.parent.location.hash = '#ILoveyoutoo';
+      let iframe = document.createElement('iframe');
+      iframe.src = 'http://127.0.0.1:4001/HASH/c.html#Iloveyoutoo';
+      document.body.appendChild(iframe);
+    </script>
+  </body>
+</html>

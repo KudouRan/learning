@@ -10,6 +10,20 @@
     a页面
     <script>
       const iframe = document.getElementsByTagName('iframe')[0];
+
+      iframe.onload = () => {
+        iframe.contentWindow.postMessage('你好啊', 'http://127.0.0.1:4002/');
+
+        //下面这种不行
+        // window.postMessage('你好啊', 'http://127.0.0.1:4002/');
+      };
+
+      //不过可以在自己这发给自己
+      window.postMessage('自己给自己说,你好啊', 'http://127.0.0.1:4001/');
+
+      window.addEventListener('message', (event) => {
+        console.log(`来自${event.origin} 的消息: ${event.data}`);
+      });
     </script>
   </body>
 </html>

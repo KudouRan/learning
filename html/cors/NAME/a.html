@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A页面</title>
+  </head>
+  <body>
+    <script>
+      const iframe = document.createElement('iframe');
+      iframe.src = 'http://127.0.0.1:4002/NAME/b.html';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+      let count = 0;
+
+      iframe.onload = () => {
+        //count = 0表示第一次进入onload,改变src为同源
+        //然后count++
+        if (!count++) {
+          iframe.src = 'http://127.0.0.1:4001/NAME/proxy.html';
+        } else {
+          //来到这里说明count>0,即已经加载同源了
+          //可以读取name值
+          console.log(JSON.parse(iframe.contentWindow.name));
+          document.body.removeChild(iframe);
+        }
+      };
+    </script>
+  </body>
+</html>

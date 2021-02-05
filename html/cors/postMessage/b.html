@@ -7,5 +7,19 @@
   </head>
   <body>
     b页面
+    <script>
+      window.addEventListener('message', (event) => {
+        //是否能信任该源
+        if (event.origin !== 'http://127.0.0.1:4001') return;
+        event.source.postMessage(
+          `我收到了你发的消息: ${event.data}`,
+          event.origin
+        );
+      });
+
+      window.addEventListener('message', (event) => {
+        console.log(`来自${event.origin} 的消息: ${event.data}`);
+      });
+    </script>
   </body>
 </html>

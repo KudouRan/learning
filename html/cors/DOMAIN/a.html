@@ -10,8 +10,17 @@
     a页面
     <script>
       const iframe = document.getElementById('iframe');
-      document.domain = '127.0.0.1';
-      console.log(iframe.contentWindow.document);
+
+      //看起来没用,没有却会出错
+      document.domain = document.domain;
+      console.log(document.domain);
+
+      const user = '虹猫';
+      window.user = user;
+
+      iframe.onload = () => {
+        console.log(iframe.contentWindow.user);
+      };
     </script>
   </body>
 </html>
