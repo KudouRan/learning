@@ -1,0 +1,6 @@
+[2021-02-18T14:48:10.798] [TRACE] 2_过滤出 - Entering cheese testing
+[2021-02-18T14:48:10.802] [DEBUG] 2_过滤出 - Got cheese.
+[2021-02-18T14:48:10.803] [INFO] 2_过滤出 - Cheese is Comté.
+[2021-02-18T14:48:10.804] [WARN] 2_过滤出 - Cheese is quite smelly.
+[2021-02-18T14:48:10.805] [ERROR] 2_过滤出 - Cheese is too ripe!
+[2021-02-18T14:48:10.806] [FATAL] 2_过滤出 - Cheese was breeding ground for listeria.

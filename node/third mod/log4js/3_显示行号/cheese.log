@@ -1,0 +1,8 @@
+2021-02-18T14:31:24.611 INFO thing D:\Users\Desktop\coding\node\third mod\log4js\3_显示行号\index.js:19 this should give me a line number now
+
+2021-02-18T14:31:38.722 INFO thing : this should give me a line number now
+
+2021-02-18T14:33:00.921 INFO thing D:\Users\Desktop\coding\node\third mod\log4js\3_显示行号\index.js:25 this should give me a line number now
+
+2021-02-18T14:33:13.025 INFO thing D:\Users\Desktop\coding\node\third mod\log4js\3_显示行号\index.js:29 this should give me a line number now
+

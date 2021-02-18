@@ -1,0 +1,6 @@
+[2021-02-18T14:24:12.338] [TRACE] 1_基本使用 - Entering cheese testing
+[2021-02-18T14:24:12.343] [DEBUG] 1_基本使用 - Got cheese.
+[2021-02-18T14:24:12.343] [INFO] 1_基本使用 - Cheese is Comté.
+[2021-02-18T14:24:12.344] [WARN] 1_基本使用 - Cheese is quite smelly.
+[2021-02-18T14:24:12.351] [ERROR] 1_基本使用 - Cheese is too ripe!
+[2021-02-18T14:24:12.352] [FATAL] 1_基本使用 - Cheese was breeding ground for listeria.
