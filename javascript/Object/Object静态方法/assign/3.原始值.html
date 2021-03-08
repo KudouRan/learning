@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const v1 = 123,
+        v2 = '123',
+        v3 = true,
+        v4 = function () {};
+
+      //原始值会被包装
+      console.log(new Object(v1));
+      console.log(new Object(v2));
+      console.log(new Object(v3));
+      console.log(new Object(v4));
+
+      //undefined和null会被忽略
+      const obj = Object.assign({}, v1, v2, v3, v4, undefined, null); //{0: "1", 1: "2", 2: "3"}
+
+      console.log(obj);
+    </script>
+  </body>
+</html>

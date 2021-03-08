@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Shape() {
+        this.x = 0;
+        this.y = 0;
+      }
+
+      Shape.prototype.move = function (x, y) {
+        this.x += x;
+        this.y += y;
+        console.log('Shape移动');
+      };
+
+      //子类
+      function Rectangle() {
+        Shape.call(this);
+      }
+
+      //之类继承父类
+      Rectangle.prototype = Object.create(Shape.prototype);
+      Rectangle.prototype.constructor = Rectangle;
+
+      const rect = new Rectangle();
+
+      console.log(rect instanceof Rectangle);
+      console.log(rect instanceof Shape);
+      rect.move();
+    </script>
+  </body>
+</html>

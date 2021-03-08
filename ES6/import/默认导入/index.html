@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Document</title>
-</head>
-<body>
-<!-- 下面的type必须写模块 -->
-<script type="module">
-  //默认导入和命名导入是可以一起使用的
-  import my, {add, a} from './test.js';
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 下面的type必须写模块 -->
+    <script type="module">
+      //默认导入和命名导入是可以一起使用的
+      import my, { add, a } from './test.js';
 
-  console.log(my.bar);
-  console.log(add(1231, 1231));
-  a.demo();
-</script>
-</body>
+      console.log(my.bar);
+      console.log(add(1231, 1231));
+      a.demo();
+    </script>
+  </body>
 </html>

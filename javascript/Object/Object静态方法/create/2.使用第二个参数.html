@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let o;
+
+      //原型为null
+      o = Object.create(null);
+
+      //下面两个原型为Object.prototype
+      o = {};
+
+      o = Object.create(Object.prototype);
+
+      o = Object.create(Object.prototype, {
+        foo: {
+          writable: true,
+          configurable: true,
+          value: 'hello',
+        },
+        bar: {
+          configurable: false,
+          get() {
+            return 10;
+          },
+
+          set(value) {
+            console.log('试图给o.bar设置值', value);
+          },
+        },
+      });
+
+      o.bar = 22200;
+      console.log(o.bar);
+
+      function Constructor() {}
+      o = new Constructor();
+      //相当于
+      o = Object.create(Constructor.prototype);
+
+      //  创建一个以另一个空对象为原型,且拥有属性p的对象
+      o = Object.create(null, { p: { value: 42 } });
+      console.log(o);
+
+      //省略了的属性特性默认为false,所以属性p是不可写,不可枚举,不可配置的
+      o.p = 24;
+      console.log(o.p); //42
+
+      o.q = 12;
+      for (let prop in o) {
+        console.log(prop, o[prop]);
+      }
+
+      delete o.p;
+      //false
+
+      //创建一个可写的,可配置的,可枚举的属性p
+
+      o2 = Object.create(null, {
+        p: {
+          value: 42,
+          writable: true,
+          configurable: true,
+          enumerable: true,
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 使用 __proto__
+      var obj = {};
+      var descriptorPro = {
+        enumerable: true,
+        writable: true,
+        configurable: true,
+        value: '默认值',
+      };
+
+      //描述符从上面继承了属性
+      var descriptor = Object.create(descriptorPro);
+      console.log(descriptor);
+      Object.defineProperty(obj, 'key', descriptor);
+
+      // key变成了可修改
+      obj.key = '修改了';
+
+      // 如果 freeze 可用, 防止后续代码添加或删除对象原型的属性
+      // （value, get, set, enumerable, writable, configurable）
+      (Object.freeze || Object)(Object.prototype);
+
+      console.log(obj);
+    </script>
+  </body>
+</html>

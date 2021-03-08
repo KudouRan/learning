@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const o = {};
+
+      Object.defineProperty(o, 'a', {
+        value: 37,
+        writable: false,
+      });
+
+      //当writable为false时,该属性不可重新赋值
+      //不会改变也不会报错
+      console.log(((o.a = 12), o.a));
+
+      const o2 = {};
+
+      //enumerable 定义了对象的属性是否可以在 for...in 循环和 Object.keys() 中被枚举。
+
+      Object.defineProperty(o2, 'a', { value: 1, enumerable: true });
+      Object.defineProperty(o2, 'b', { value: 2, enumerable: false });
+      Object.defineProperty(o2, 'c', { value: 3 }); // enumerable 默认为 false
+      o2.d = 4; // 如果使用直接赋值的方式创建对象的属性，则 enumerable 为 true
+      Object.defineProperty(o2, Symbol.for('e'), {
+        value: 5,
+        enumerable: true,
+      });
+      Object.defineProperty(o2, Symbol.for('f'), {
+        value: 6,
+        enumerable: false,
+      });
+
+      for (var i in o2) {
+        console.log(i);
+      }
+      // logs 'a' and 'd' (in undefined order)
+
+      console.log(Object.keys(o2)); // ['a', 'd']
+
+      o2.propertyIsEnumerable('a'); // true
+      o2.propertyIsEnumerable('b'); // false
+      o2.propertyIsEnumerable('c'); // false
+      o2.propertyIsEnumerable('d'); // true
+      o2.propertyIsEnumerable(Symbol.for('e')); // true
+      o2.propertyIsEnumerable(Symbol.for('f')); // false
+
+      const p = { ...o2 };
+      console.log(p); //只有o2的可枚举属性
+    </script>
+  </body>
+</html>

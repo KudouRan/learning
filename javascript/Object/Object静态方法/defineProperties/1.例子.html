@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //参考Object.defineProperty()
+      const obj = {};
+
+      Object.defineProperties(obj, {
+        a: {
+          value: 1,
+          writable: true,
+          enumerable: true,
+          configurable: true,
+        },
+        b: {
+          value: 2,
+        },
+      });
+
+      console.log(obj);
+
+      console.log(delete obj.b); //false
+    </script>
+  </body>
+</html>

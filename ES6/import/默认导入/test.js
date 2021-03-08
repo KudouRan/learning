@@ -17,4 +17,4 @@ const a = {
   },
 };
 
-export {add, sub, a};
+export { add, sub, a };

@@ -1,7 +1,4 @@
-const bar = 'bar'
-const baz = 'baz'
+const bar = 'bar';
+const baz = 'baz';
 
-export {
-  bar,
-  baz
-}
+export { bar, baz };

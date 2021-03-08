@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function myclass() {}
+
+      Object.defineProperty(myclass.prototype, 'x', {
+        get() {
+          console.log('getter', this === b); // true
+          return this.stored_x;
+        },
+        set(x) {
+          console.log('setter', this === a); //true
+          this.stored_x = x;
+        },
+      });
+
+      var a = new myclass();
+      var b = new myclass();
+      a.x = 1;
+      console.log(b.x); // undefined
+    </script>
+  </body>
+</html>

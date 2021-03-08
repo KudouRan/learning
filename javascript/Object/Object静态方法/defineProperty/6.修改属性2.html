@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // configurable 特性表示对象的属性是否可以被删除，以及除 value 和 writable 特性外的其他特性是否可以被修改。
+
+      const o = {};
+
+      Object.defineProperty(o, 'a', {
+        get() {
+          return 1;
+        },
+        configurable: false,
+      });
+
+      try {
+        Object.defineProperty(o, 'a', {
+          configurable: true,
+        }); // throws a TypeError
+      } catch (err) {
+        console.log('configurable', err);
+      }
+      try {
+        Object.defineProperty(o, 'a', {
+          enumerable: true,
+        }); // throws a TypeError
+      } catch (err) {
+        console.log('enumerable', err);
+      }
+
+      try {
+        Object.defineProperty(o, 'a', {
+          set() {},
+        }); // throws a TypeError (set was undefined previously)
+      } catch (error) {
+        console.log('set', error);
+      }
+
+      try {
+        Object.defineProperty(o, 'a', {
+          get() {
+            return 1;
+          },
+        }); // throws a TypeError
+      } catch (error) {
+        console.log('get', error);
+      }
+
+      try {
+        Object.defineProperty(o, 'a', {
+          value: 12,
+        }); // throws a TypeError // ('value' can be changed when 'configurable' is false but not in this case due to 'get' accessor)
+      } catch (error) {
+        console.log('value', error);
+      }
+
+      console.log(o.a); // logs 1
+      delete o.a; // Nothing happens
+      console.log(o.a); // logs 1
+    </script>
+  </body>
+</html>

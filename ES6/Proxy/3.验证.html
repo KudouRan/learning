@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const validator = {
+        set(obj, prop, value) {
+          if (prop === 'age') {
+            if (!Number.isInteger(value)) {
+              throw new TypeError('年龄必须是一个整数');
+            }
+            if (value > 200) {
+              throw new RangeError('你是不是活得太大了');
+            }
+          }
+
+          //默认行为
+          obj[prop] = value;
+
+          //表示成功
+          return true;
+        },
+      };
+
+      let person = new Proxy({}, validator);
+
+      person.age = 100;
+
+      console.log(person.age);
+
+      // person.age = 201;
+
+      person.age = 1.1;
+    </script>
+  </body>
+</html>

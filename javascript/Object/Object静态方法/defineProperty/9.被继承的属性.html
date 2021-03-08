@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function myclass() {}
+
+      myclass.prototype.x = 1;
+      Object.defineProperty(myclass.prototype, 'y', {
+        writable: false,
+        value: 1,
+      });
+
+      var a = new myclass();
+      a.x = 2;
+      console.log(a.x); // 2
+      console.log(myclass.prototype.x); // 1
+      a.y = 2; // Ignored, throws in strict mode
+      console.log(a.y); // 1
+      console.log(myclass.prototype.y); // 1
+    </script>
+  </body>
+</html>
