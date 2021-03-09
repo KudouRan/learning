@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const obj = {};
+
+      //所有对象初始化时自身并没有symbol的属性
+      console.log(Object.getOwnPropertySymbols(obj)); // []
+
+      const a = Symbol('a');
+      const b = Symbol.for('b');
+
+      obj[a] = 'localSymbol';
+      obj[b] = 'globalSymbol';
+
+      const objectSymbols = Object.getOwnPropertySymbols(obj);
+
+      console.log(objectSymbols.length); // 2
+      console.log(objectSymbols); // [Symbol(a), Symbol(b)]
+      console.log(objectSymbols[0]); // Symbol(a)
+    </script>
+  </body>
+</html>

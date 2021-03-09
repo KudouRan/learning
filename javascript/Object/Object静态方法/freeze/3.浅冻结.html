@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      obj1 = {
+        internal: {},
+      };
+
+      Object.freeze(obj1);
+      obj1.internal.a = 'aValue';
+
+      //internal属性做为一个对象并未被冻结
+
+      console.log(obj1.internal.a); // 'aValue'
+    </script>
+  </body>
+</html>

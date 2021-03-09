@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // Object.seal()方法封闭一个对象，阻止添加新属性并将所有现有属性标记为不可配置。当前属性的值只要原来是可写的就可以改变。
+      //Object.seal(obj)
+
+      const obj = {
+        prop: function () {},
+        foo: 'bar',
+      };
+
+      // 可以添加新的属性
+      // 可以更改或删除现有的属性
+      obj.foo = 'baz';
+      obj.lumpy = 'woof';
+      delete obj.prop;
+
+      console.log(obj);
+
+      const o = Object.seal(obj);
+
+      console.log(o === obj); // true
+      console.log(Object.isSealed(obj)); // === true
+
+      // 仍然可以修改密封对象的属性值
+      obj.foo = 'quux';
+      console.log(obj);
+
+      // 但是你不能将属性重新定义成为访问器属性
+      // 反之亦然
+      try {
+        Object.defineProperty(obj, 'foo', {
+          get: function () {
+            return 'g';
+          },
+        }); // throws a TypeError
+      } catch (error) {
+        console.error(error);
+      }
+
+      // 除了属性值以外的任何变化，都会失败. 但是都是静默的
+      obj.quaxxor = 'the friendly duck';
+      // 添加属性将会失败
+      delete obj.foo;
+      // 删除属性将会失败
+      console.log(obj);
+
+      // 在严格模式下，这样的尝试将会抛出错误
+      function fail() {
+        'use strict';
+        delete obj.foo; // throws a TypeError
+        obj.sparky = 'arf'; // throws a TypeError
+      }
+      try {
+        fail();
+      } catch (error) {
+        console.error(error);
+      }
+
+      try {
+        // 通过Object.defineProperty添加属性将会报错
+        Object.defineProperty(obj, 'ohai', {
+          value: 17,
+        }); // throws a TypeError
+      } catch (error) {
+        console.error(error);
+      }
+
+      Object.defineProperty(obj, 'foo', {
+        value: 'eit',
+      }); // 通过Object.defineProperty修改属性值
+
+      console.log(obj);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const arr = [1, 2, 3];
+      console.log(Object.values(arr)); //[1, 2, 3]
+
+      const obj = { foo: 'bar', baz: 42 };
+      console.log(Object.values(obj)); // ['bar', 42]
+
+      const obj2 = { 0: 'a', 1: 'b', 2: 'c' };
+      console.log(Object.values(obj2)); // ['a', 'b', 'c']
+
+      //像数组一样的对象(但是数字乱序)
+      const an_obj = { 100: 'a', 2: 'b', 7: 'c' };
+      //获得的数组按照数字正序进行排
+      console.log(Object.values(an_obj)); // ['b', 'c', 'a']
+
+      // getFoo不可枚举
+      const my_obj = Object.create(
+        {},
+        {
+          getFoo: {
+            value: function () {
+              return this.foo;
+            },
+          },
+        },
+      );
+      my_obj.foo = 'bar';
+      console.log(Object.values(my_obj)); // ['bar']
+
+      // 非对象会包装成对象
+      console.log(Object.values('foo')); // ['f', 'o', 'o']
+    </script>
+  </body>
+</html>

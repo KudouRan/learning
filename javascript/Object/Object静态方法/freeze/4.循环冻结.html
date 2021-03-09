@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //由于js中的对象能够进行循环引用,使用下面的方式冻结可能进入无限递归
+
+      // 深冻结函数.
+      function deepFreeze(obj) {
+        // 取回定义在obj上的属性名
+        var propNames = Object.getOwnPropertyNames(obj);
+
+        // 在冻结自身之前冻结属性
+        propNames.forEach(function (name) {
+          var prop = obj[name];
+
+          // 如果prop是个对象，冻结它
+          if (typeof prop == 'object' && prop !== null) deepFreeze(prop);
+        });
+
+        // 冻结自身(no-op if already frozen)
+        return Object.freeze(obj);
+      }
+
+      obj2 = {
+        internal: {},
+      };
+
+      deepFreeze(obj2);
+      obj2.internal.a = 'anotherValue';
+      console.log(obj2.internal.a); // undefined
+    </script>
+  </body>
+</html>

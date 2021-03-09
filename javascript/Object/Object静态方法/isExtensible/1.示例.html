@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 新对象默认是可扩展的.
+      const empty = {};
+      console.log(Object.isExtensible(empty)); // === true
+
+      // ...可以变的不可扩展.
+      Object.preventExtensions(empty);
+      console.log(Object.isExtensible(empty)); // === false
+
+      // 密封对象是不可扩展的.
+      const sealed = Object.seal({});
+      console.log(Object.isExtensible(sealed)); // === false
+
+      // 冻结对象也是不可扩展.
+      const frozen = Object.freeze({});
+      console.log(Object.isExtensible(frozen)); // === false
+    </script>
+  </body>
+</html>

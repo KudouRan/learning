@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const obj = {
+        prop() {},
+        foo: 'bar',
+      };
+
+      //冻结
+      const o = Object.freeze(obj);
+
+      console.log(o === obj);
+
+      o.foo = '123'; //无效果
+      console.log(o.foo); // 'baz'
+      console.log(Object.isFrozen(o)); //true
+
+      obj.aaa = '344'; //静默的添加失败
+      console.log(obj.aaa); //undefined
+
+      //使用严格模式
+      (function () {
+        'use strict';
+
+        try {
+          obj.foo = '1231'; // TypeError
+        } catch (error) {
+          console.warn(error);
+        }
+
+        try {
+          obj.aaa = '344'; // TypeError
+        } catch (error) {
+          console.warn(error);
+        }
+
+        //返回true,因为aaa本来就不存在
+        console.log(delete obj.aaa);
+
+        try {
+          delete obj.foo; //TypeError
+        } catch (error) {
+          console.warn(error);
+        }
+      })();
+
+      // 试图通过 Object.defineProperty 更改属性
+      // 下面两个语句都会抛出 TypeError.
+      try {
+        Object.defineProperty(obj, 'ohai', { value: 17 });
+      } catch (error) {
+        console.warn(error);
+      }
+      try {
+        Object.defineProperty(obj, 'foo', { value: 'eit' });
+      } catch (error) {
+        console.warn(error);
+      }
+
+      // 也不能更改原型
+      // 下面两个语句都会抛出 TypeError.
+      try {
+        Object.setPrototypeOf(obj, { x: 20 });
+      } catch (error) {
+        console.warn(error);
+      }
+      try {
+        obj.__proto__ = { x: 20 };
+      } catch (error) {
+        console.warn(error);
+      }
+    </script>
+  </body>
+</html>

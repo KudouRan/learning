@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //该方法返回所有自身属性组成的数组
+      //(包括可枚举和不可枚举属性,不包括Symbol为键的属性)
+
+      const arr = ['a', 'b', 'c'];
+
+      console.log(Object.getOwnPropertyNames(arr));
+      //["0", "1", "2", "length"]顺序可能不同
+
+      const obj = { 0: 'a', 1: 'b', 2: 'c' };
+
+      console.log(Object.getOwnPropertyNames(obj));
+      //["0", "1", "2"]顺序可能不同
+
+      // 使用Array.forEach输出属性名和属性值
+      Object.getOwnPropertyNames(obj).forEach(val => {
+        console.log(val + ' -> ' + obj[val]);
+      });
+
+      const my_obj = Object.create(
+        {},
+        {
+          getFoo: {
+            value: function () {
+              return this.foo;
+            },
+            enumerable: false,
+          },
+        },
+      );
+      my_obj.foo = 1;
+
+      //symbol
+      my_obj[Symbol.for('测试')] = 12;
+
+      console.log(my_obj);
+
+      console.log(Object.getOwnPropertyNames(my_obj)); // ["foo", "getFoo"] 顺序可能不同
+    </script>
+  </body>
+</html>

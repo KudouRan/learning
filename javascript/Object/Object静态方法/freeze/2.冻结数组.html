@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const a = [0];
+      Object.freeze(a);
+
+      a[0] = 1; //静默的报错 ,在严格模式报错
+
+      try {
+        a.push(2);
+      } catch (error) {
+        console.warn(error);
+      }
+
+      console.log(a);
+    </script>
+  </body>
+</html>

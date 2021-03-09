@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(Object.is(1, '1')); //fasle
+
+      console.log(Object.is(0, -0)); //false
+
+      console.log(Object.is(NaN, NaN)); //true
+
+      console.log(Object.is({}, {})); //false
+
+      function myObjectIs(x, y) {
+        if (x === y) {
+          //判断是否是0,是0则判断符号符号相同
+          return x !== 0 || 1 / x === 1 / y;
+        }
+        //判断是否都是是NaN,不是就返回false
+        return x !== x && y !== y;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const obj1 = { foo: 'bar' };
+
+      Object.defineProperties(obj1, {
+        bar: {
+          value: 123,
+          writable: true,
+        },
+        baz: {
+          get() {
+            return 234;
+          },
+        },
+      });
+
+      //获取自身有的(不能是原型链上的)
+      const desc1 = Object.getOwnPropertyDescriptor(obj1, 'foo');
+      const desc2 = Object.getOwnPropertyDescriptor(obj1, 'bar');
+      const desc3 = Object.getOwnPropertyDescriptor(obj1, 'baz');
+
+      console.log(desc1);
+      console.log(desc2);
+      console.log(desc3);
+
+      //没有的返回undefined
+      console.log(Object.getOwnPropertyDescriptor(obj1, 'baz11'));
+    </script>
+  </body>
+</html>
