@@ -20,6 +20,8 @@
       p.b = undefined;
 
       console.log(p.a, p.b); // 1, undefined
+
+      //c 并不在p中,但是可以通过代理获取到37
       console.log('c' in p, p.c); // false, 37
     </script>
   </body>

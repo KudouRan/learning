@@ -33,9 +33,17 @@
 
       console.log(person.age);
 
-      // person.age = 201;
+      try {
+        person.age = 201;
+      } catch (error) {
+        console.error(error);
+      }
 
-      person.age = 1.1;
+      try {
+        person.age = 1.1;
+      } catch (error) {
+        console.error(error);
+      }
     </script>
   </body>
 </html>

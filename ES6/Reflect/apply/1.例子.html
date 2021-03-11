@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log(Function.prototype.apply.call(Math.floor, undefined, [1.75]));
+      //上面和下面等价
+      console.log(Reflect.apply(Math.floor, undefined, [1.75]));
+      // 1;
+
+      console.log(
+        Reflect.apply(String.fromCharCode, undefined, [
+          104,
+          101,
+          108,
+          108,
+          111,
+        ]),
+      );
+      // "hello"
+
+      console.log(
+        Reflect.apply(RegExp.prototype.exec, /ab/, ['confabulation']).index,
+      );
+      // 4
+
+      console.log(Reflect.apply(''.charAt, 'ponies', [3]));
+      // "i"
+    </script>
+  </body>
+</html>

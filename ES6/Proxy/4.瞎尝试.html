@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const handler = {
+        //Object.getPrototypeOf 方法的捕捉器。
+        getPrototypeOf() {
+          console.log('调用getPrototypeOf');
+        },
+
+        // Object.setPrototypeOf 方法的捕捉器。
+        setPrototypeOf() {
+          console.log('调用setPrototypeOf');
+        },
+
+        // Object.isExtensible 方法的捕捉器。
+        isExtensible() {
+          console.log('调用isExtensible');
+        },
+
+        // Object.preventExtensions 方法的捕捉器。
+        preventExtensions() {
+          console.log('调用preventExtensions');
+        },
+
+        // Object.getOwnPropertyDescriptor 方法的捕捉器。
+        getOwnPropertyDescriptor() {
+          console.log('调用getOwnPropertyDescriptor');
+        },
+
+        // Object.defineProperty 方法的捕捉器。
+        defineProperty() {
+          console.log('调用defineProperty');
+        },
+
+        // in 操作符的捕捉器。
+        has() {
+          console.log('调用has');
+        },
+
+        // 属性读取操作的捕捉器。
+        get() {
+          console.log('调用get');
+        },
+
+        // 属性设置操作的捕捉器。
+        set() {
+          console.log('调用set');
+        },
+
+        // delete 操作符的捕捉器。
+        deleteProperty() {
+          console.log('调用deleteProperty');
+        },
+
+        // Object.getOwnPropertyNames 方法和 Object.getOwnPropertySymbols 方法的捕捉器。
+        ownKeys() {
+          console.log('调用ownKeys');
+        },
+
+        // 函数调用操作的捕捉器。
+        apply() {
+          console.log('调用apply');
+        },
+
+        // new 操作符的捕捉器。
+        construct(target, ...args) {
+          console.log('调用construct');
+          console.log(args);
+          return new target(...args);
+        },
+      };
+
+      const target = {};
+      const p = new Proxy(target, handler);
+
+      const fun = new Proxy(function (a) {
+        this.a = a;
+      }, handler);
+
+      console.log(new fun(1));
+    </script>
+  </body>
+</html>
