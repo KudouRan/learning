@@ -1,0 +1,15 @@
+GET http://localhost:9090/query?user=catlair&password=123456
+
+###
+POST http://localhost:9090/form
+Content-Type: application/x-www-form-urlencoded
+
+user=catlair&password=123456
+
+###
+POST http://localhost:9090/json
+Content-Type: application/json
+
+{"user": "catlair", "password": "123456"}
+
+###

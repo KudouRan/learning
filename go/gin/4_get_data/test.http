@@ -1,0 +1,21 @@
+POST http://localhost:9090/json
+Content-Type: application/json
+
+{
+  "message": "hello"
+}
+
+###
+
+POST http://localhost:9090/post
+Content-Type: application/x-www-form-urlencoded
+
+username=catlair&address=chinese
+
+###
+
+GET http://localhost:9090/path/999
+
+###
+
+GET http://localhost:9090/query?name=刘亦菲

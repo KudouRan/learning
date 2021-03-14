@@ -1,0 +1,16 @@
+{{define "index.tmpl"}}
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/static/index.css">
+        <title>这是主页</title>
+    </head>
+    <body>
+    <img title="哈哈哈" src="/static/zard.jpg" alt="zard">
+    <p>姓名: {{ .Name }}</p>
+    <p>生日: {{ .Birthday }}</p>
+    <p>出生: {{ .dateBirth }}</p>
+    </body>
+    </html>
+{{end}}
