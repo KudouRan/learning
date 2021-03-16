@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
 </head>
 <body>
-$END$
+<div id="s">
+    <form action="/single" method="post" enctype="multipart/form-data">
+        <input type="file" name="s_file">
+        <input type="submit" value="上传">
+    </form>
+</div>
+<hr>
+<div id="m">
+    <form action="/multi" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="file" name="file">
+        <input type="file" name="file">
+        <input type="submit" value="上传多个">
+    </form>
+</div>
 </body>
 </html>
