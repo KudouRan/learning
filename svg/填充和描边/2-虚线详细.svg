@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg">
-    <path d="M 10 75 L 280 75 Z" stroke="#00ff00" stroke-width="20" stroke-dasharray="5,5" fill="none" stroke-linecap="butt"/>
-    <path d="M 10 175 L 280 175 Z" stroke="blue" stroke-width="20" stroke-dasharray="10,5" fill="none" stroke-linecap="butt"/>
-    <path d="M 10 275 L 280 275 Z" stroke="yellow" stroke-width="20" stroke-dasharray="5,10" fill="none" stroke-linecap="butt"/>
-</svg>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="150" height="150"></canvas>
+  <script>
+    /** @type {HTMLCanvasElement} */
+    const canvas = document.getElementById('canvas');
+    // const canvas = document.getElementsByTagName('canvas')[0];
+    const ctx = canvas.getContext('2d');
+
+    ctx.beginPath();
+    ctx.moveTo(70, 50)
+    ctx.lineTo(100, 75)
+    ctx.lineTo(100, 25)
+    ctx.fill()
+  </script>
+</body>
+
+</html>
