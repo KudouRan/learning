@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+  </head>
+  <body>
+    <h2>1</h2>
+    <h2>2</h2>
+    <h2>3</h2>
+    <h2>4</h2>
+    <h2>5</h2>
+    <h2>6</h2>
+    <h2>7</h2>
+    <h2>8</h2>
+    <h2>9</h2>
+    <h2>10</h2>
+    <script>
+      // function demo() {
+      //   d3.select('body').transition().style('background-color', 'black');
+      //   setTimeout(() => {
+      //     d3.select('body').transition().style('background-color', '#fff');
+      //   }, 1000);
+      // }
+      // setInterval(() => {
+      //   demo();
+      // }, 2000);
+      function test() {
+        d3.selectAll('h2')
+          .transition()
+          .duration(750)
+          .delay(function (d, i) {
+            return i * 100;
+          })
+          .style(
+            'background-color',
+            () =>
+              `rgba(${Math.random() * 255},${Math.random() * 255},${
+                Math.random() * 255
+              },${Math.random() * 255})`,
+          );
+      }
+      test();
+      setInterval(() => {
+        d3.selectAll('h2')
+          .transition()
+          .duration(750)
+          .delay(function (d, i) {
+            return i * 100;
+          })
+          .style('background-color', () => `rgba(0,0,0,0)`);
+        setTimeout(test, 750);
+      }, 1500);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>这是第1个p标签</p>
+    <p>这是第2个p标签</p>
+    <p>这是第3个p标签</p>
+    <p>这是第4个p标签</p>
+    <p>这是第5个p标签</p>
+    <p>这是第6个p标签</p>
+    <p>这是第7个p标签</p>
+    <p>这是第8个p标签</p>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script>
+      d3.selectAll('p').style(
+        'color',
+        () => `hsl(${Math.random() * 360},100%,50%)`,
+      );
+
+      d3.selectAll('p').style('background-color', (d, i) =>
+        i % 2 ? '#fff' : '#eee',
+      );
+
+      //计算属性通常指绑定数据。
+      d3.selectAll('p')
+        .data([4, 6, 8, 12, 16, 22, 28, 36])
+        .style('font-size', d => d + 'px');
+    </script>
+  </body>
+</html>

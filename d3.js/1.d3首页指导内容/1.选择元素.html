@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>第1个p标签</p>
+    <p>第2个p标签</p>
+    <p>第3个p标签</p>
+    <h2>第1个h2标签</h2>
+    <h2>第2个h2标签</h2>
+    <h2>第3个h2标签</h2>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script>
+      //使用原生js
+      var paragraphs = document.getElementsByTagName('p');
+      for (var i = 0; i < paragraphs.length; i++) {
+        var paragraph = paragraphs.item(i);
+        paragraph.style.setProperty('color', 'blue', null);
+      }
+      //使用d3
+      d3.selectAll('h2').style('color', 'red');
+      d3.select('body').style('background-color', 'black');
+    </script>
+  </body>
+</html>
