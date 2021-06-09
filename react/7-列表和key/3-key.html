@@ -17,28 +17,36 @@
       crossorigin
     ></script>
     <script type="text/babel">
-      //和vue一样,key都是用来识别那些元素被改变了
-      //在万不得已时才可以使用index,因为列表项会改变,导致index改变,从而引起组件状态问题
-      //不用key,react会隐式使用index,不过好像会报错,让添加key
+      // 和vue一样,key都是用来识别那些元素被改变了
+      // 在万不得已时才可以使用index,因为列表项会改变,导致index改变,从而引起组件状态问题
+      // 不用key,react会隐式使用index,不过好像会报错,让添加key
+      // key 在且只在兄弟元素中需要唯一
 
       function ListItem(props) {
         // 正确！这里不需要指定 key：
         return <li>{props.value}</li>;
+
+        // 这是错误示范，这里不需要指定 key：
+        // return <li key={props.value.toString()}>{props.value}</li>;
       }
 
       function NumberList(props) {
         const numbers = props.numbers;
         // 正确！key 应该在数组的上下文中被指定
-        const listItems = numbers.map((number) => (
+        const listItems = numbers.map(number => (
           <ListItem key={number.toString()} value={number} />
         ));
+
+        // 错误！key 应该在数组的上下文中被指定，但是这里并没有指定 key
+        // const listItems = numbers.map(number => <ListItem value={number} />);
+
         return <ul>{listItems}</ul>;
       }
 
       const numbers = [1, 2, 3, 4, 5];
       ReactDOM.render(
         <NumberList numbers={numbers} />,
-        document.getElementById('root')
+        document.getElementById('root'),
       );
     </script>
   </body>

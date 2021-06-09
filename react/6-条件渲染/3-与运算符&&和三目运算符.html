@@ -16,7 +16,8 @@
       crossorigin
     ></script>
     <script type="text/babel">
-      //可以在jsx中嵌入任何js表达式,&&和三目运算符都可,if这种语句就别试了
+      //可以在jsx中嵌入任何js表达式,&&和三目运算符都可,if这种逻辑控制语句就别试了
+      // jsx 中要使用大于小于字符时，应该用 html 字符实体（&gt;），否则 jsx 会将它认为是标签而出现错误
       function Mailbox(props) {
         const unreadMessages = props.unreadMessages;
         return (
@@ -35,7 +36,7 @@
       const messages = ['React', 'Re: React', 'Re:Re: React'];
       ReactDOM.render(
         <Mailbox unreadMessages={messages} />,
-        document.getElementById('root')
+        document.getElementById('root'),
       );
     </script>
   </body>

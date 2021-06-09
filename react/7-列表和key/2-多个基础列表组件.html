@@ -18,16 +18,16 @@
     ></script>
     <script type="text/babel">
       function NumberList(props) {
-        const number = props.number;
-        const listItems = number.map((number) => <li>{number}</li>);
+        const numbers = props.numbers;
+        const listItems = numbers.map(number => <li>{number}</li>);
         return <ul>{listItems}</ul>;
       }
 
       //(3)介绍key
-      const number = [1, 2, 3, 4, 5];
+      const numbers = [1, 2, 3, 4, 5];
       ReactDOM.render(
-        <NumberList number={number} />,
-        document.getElementById('root')
+        <NumberList numbers={numbers} />,
+        document.getElementById('root'),
       );
     </script>
   </body>

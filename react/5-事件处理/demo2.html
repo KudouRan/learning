@@ -20,23 +20,36 @@
       class Toggle extends React.Component {
         constructor(props) {
           super(props);
-          this.state = { isToggleOn: true };
+          this.state = { isHot: true };
 
           // 为了在回调中使用 `this`，这个绑定是必不可少的
           this.handleClick = this.handleClick.bind(this);
         }
 
         handleClick() {
-          this.setState((state) => ({
-            isToggleOn: !state.isToggleOn,
+          this.setState(state => ({
+            isHot: !state.isHot,
           }));
         }
 
+        // 或者直接使用箭头函数进行
+        handleClick1 = () =>
+          this.setState(state => ({
+            isHot: !state.isHot,
+          }));
+
         render() {
           return (
-            <button onClick={this.handleClick}>
-              {this.state.isToggleOn ? '开' : '关'}
-            </button>
+            <div>
+              <h1> 今天的天气很{this.state.isHot ? '炎热' : '凉爽'}</h1>
+              <p>
+                使用箭头函数，bind 等方法解决使用回调时 this
+                的问题。以下两个按钮的效果是一样的
+              </p>
+              <button onClick={this.handleClick1}>bind</button>
+              &nbsp;&nbsp;
+              <button onClick={this.handleClick1}>箭头函数</button>
+            </div>
           );
         }
       }

@@ -20,14 +20,17 @@
       //注意Component首字母大写
       class Clock extends React.Component {
         //在原来的基础上添加构造器
-        constructor(props) {
-          super(props);
-          //构造器是唯一能直接给state赋值的地方,其他地方使用setState()方法
-          this.state = { date: new Date() };
-        }
+        // constructor(props) {
+        //   super(props);
+        //   this.state = { date: new Date() };
+        // }
+
+        // 也可以不用构造器
+        state = { date: new Date() };
 
         //this.props改成this.state
         render() {
+          console.log(this);
           return (
             <div>
               <h1>hello ,world !</h1>

@@ -31,8 +31,12 @@
         }
 
         handleSubmit(event) {
-          window.alert('提交的名字: ' + this.state.value);
+          const { value } = this.state;
           event.preventDefault();
+          if (!value) {
+            return;
+          }
+          window.alert('提交的名字: ' + value);
         }
 
         render() {
@@ -47,6 +51,8 @@
                   value={this.state.value}
                   onChange={this.handleChange}
                 />
+                {/* 省略掉value也行，但是把value初始值改为非空就会发现问题 */}
+                {/* <input type="text" onChange={this.handleChange} />*/}
               </label>
               <input type="submit" value="提交" />
             </form>

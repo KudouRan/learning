@@ -17,7 +17,7 @@
       crossorigin
     ></script>
     <script type="text/babel">
-      //当需要处理多个 input 元素时，
+      // 当需要处理多个 input 元素时，
       // 我们可以给每个元素添加 name 属性，
       // 并让处理函数根据 event.target.name 的值选择要执行的操作。
       class Reservation extends React.Component {
@@ -33,9 +33,11 @@
 
         handleInputChange(event) {
           const target = event.target;
-          const value =
-            target.name === 'isGoing' ? target.checked : target.value;
           const name = target.name;
+          // const value = name === 'isGoing' ? target.checked : target.value;
+          // 更好的
+          const value =
+            target.type === 'checkbox' ? target.checked : target.value;
 
           //这里是使用ES6计算属性名为其赋值
           this.setState({

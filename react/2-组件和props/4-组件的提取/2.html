@@ -11,7 +11,10 @@
       src="../../bin/babel-standalone@6.26.0.babel.min.js"
       crossorigin
     ></script>
-    <script src="../../bin/@16.14.0.umd.react.development.js" crossorigin></script>
+    <script
+      src="../../bin/@16.14.0.umd.react.development.js"
+      crossorigin
+    ></script>
     <script
       src="../../bin/@16.14.0.umd.react-dom.development.js"
       crossorigin
@@ -30,8 +33,9 @@
         },
       };
 
-      //为什么这里用user而不是author
-      //因为这是组件,他不会考虑外面传入什么,管好自己就行
+      // 为什么这里props用user而不是author
+      // 因为这是组件,他不会考虑外面传入什么,管好自己就行
+      // 别人使用时依照组件
       function Avatar(props) {
         return (
           <img
@@ -61,7 +65,7 @@
           text={comment.text}
           author={comment.author}
         />,
-        document.getElementById('root')
+        document.getElementById('root'),
       );
     </script>
   </body>
