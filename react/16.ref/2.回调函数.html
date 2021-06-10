@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react/17.0.2/umd/react.development.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/react-dom/17.0.2/umd/react-dom.development.min.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class InputFocusDemo extends React.Component {
+        focusTextInput = () => {
+          // 使用原生api
+          this.textInput.focus();
+          console.log(this.textInput);
+        };
+
+        focusTextInput1 = () => {
+          // 使用原生api
+          this.textInput1.focus();
+          console.log(this.textInput1);
+        };
+
+        // 用于测试 ref 的调用次数
+        // 首次 render 会执行1次，然后每次更新会执行两次，这是 react 的特性
+        reRender = () => {
+          // 触发重新渲染
+          // this.forceUpdate();
+
+          // 或者
+          this.setState({});
+        };
+
+        // 通过将 ref 的回调函数定义成 class 的绑定函数的方式可以避免上述问题，但是大多数情况下它是无关紧要的。
+        // 使用绑定函数后更新不会触发回调
+        classBindFunc = el => {
+          this.textInput1 = el;
+          console.log('ref回调(class绑定函数)运行了', el);
+        };
+
+        render() {
+          return (
+            <div>
+              <input
+                name="0"
+                ref={el => {
+                  this.textInput = el;
+                  console.log('ref回调运行了', el);
+                }}
+                type="text"
+              />
+              <button onClick={this.focusTextInput}>点击聚焦input</button>
+              <hr />
+              <input name="1" ref={this.classBindFunc} type="text" />
+              <button onClick={this.focusTextInput1}>点击聚焦input1</button>
+              <hr />
+              <button onClick={this.reRender}>点击重新渲染</button>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<InputFocusDemo />, document.getElementById('root'));
+    </script>
+  </body>
+</html>
