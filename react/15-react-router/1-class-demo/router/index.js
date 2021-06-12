@@ -11,7 +11,7 @@ import NotFound from '../pages/404';
 import News from '../pages/News';
 import Profile from '../pages/Profile';
 
-export default function () {
+export default function MyRouter() {
   return (
     <Router>
       <h1>路由测试页面</h1>
@@ -21,7 +21,7 @@ export default function () {
         </li>
       </ul>
       <Switch>
-        {/* exact 精准匹配 */}
+        {/* exact 精准匹配，不加所有 / 开头页面都会跳转到 / 路径 */}
         <Route exact path="/" component={Home}></Route>
         <Route path="/home">
           <Redirect to="/"></Redirect>

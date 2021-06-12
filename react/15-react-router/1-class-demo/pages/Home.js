@@ -9,7 +9,7 @@ export default class Home extends React.Component {
           <Link to="/news">去news页面(Link)</Link>
         </p>
         <p>
-          {/* Link也是生成一个a标签 */}
+          {/* Link也是生成一个a标签，默认的a会刷新页面 */}
           <a href="/profile/1">去profile/1页面(a标签)</a>
         </p>
         <p>
