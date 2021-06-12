@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function () {
+export default function CssPag() {
   return (
     <div>
       <h1>这里是css页面</h1>

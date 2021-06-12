@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function () {
+export default function NewsPage() {
   return (
     <div>
       <h1>这里是新闻页面</h1>

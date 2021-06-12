@@ -15,9 +15,12 @@ function Profile() {
   console.log('routeMatch', routeMatch);
   console.log('location', location);
   console.log('params', params);
+  console.log('routeMatch.params === params', routeMatch.params === params);
+  console.log('history.location === localtion', history.location === location);
   return (
     <div>
       <h1>Profile</h1>
+      <p>打开控制台</p>
       <h2>用户id:{params.id}</h2>
       <button
         onClick={() => {

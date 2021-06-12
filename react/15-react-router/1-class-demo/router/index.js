@@ -11,7 +11,7 @@ import NotFound from '../pages/404';
 import News from '../pages/News';
 import Profile from '../pages/Profile';
 
-export default function MyRouter() {
+export default function AppRouter() {
   return (
     <Router>
       <h1>路由测试页面</h1>

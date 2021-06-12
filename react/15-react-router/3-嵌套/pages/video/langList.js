@@ -2,7 +2,7 @@ import Css from './Css';
 import Html from './Html';
 import JavaScript from './JavaScript';
 
-export default [
+const langList = [
   {
     name: 'css',
     path: '/video/css',
@@ -25,3 +25,4 @@ export default [
     component: JavaScript,
   },
 ];
+export default langList;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function () {
+export default function HomePage() {
   return (
     <div>
       <h1>这里是首页</h1>

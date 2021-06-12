@@ -12,7 +12,7 @@ function AppRouter() {
           <h1>一级导航栏</h1>
           <ul>
             <li>
-              <NavLink exact={true} activeClassName="red" to="/">
+              <NavLink activeClassName="red" to="/">
                 首页
               </NavLink>
             </li>
@@ -34,6 +34,7 @@ function AppRouter() {
         </nav>
         <main>
           {/* video别精准匹配,否则匹配不到/video/... */}
+          {/* 不加 exact 所有路由前面都会渲染 Home 组件 */}
           <Route exact path="/" component={Home}></Route>
           <Route path="/video" component={Video}></Route>
           <Route path="/news" component={News}></Route>

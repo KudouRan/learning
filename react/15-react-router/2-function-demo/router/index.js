@@ -5,15 +5,15 @@ import NotFound from '../pages/404';
 import News from '../pages/News';
 import Profile from '../pages/Profile';
 
-//1.重定向
-//2.404匹配
-//3.精准匹配
-//4.路由也对应vue的两种模式,history(BrowserRouter)和hash(HashRouter)
+// 1.重定向
+// 2.404匹配
+// 3.精准匹配
+// 4.路由也对应vue的两种模式,history(BrowserRouter)和hash(HashRouter)
 function random() {
   return Math.floor(Math.random() * 10);
 }
 
-export default function () {
+export default function AppRouter() {
   return (
     <BrowserRouter>
       <ul>

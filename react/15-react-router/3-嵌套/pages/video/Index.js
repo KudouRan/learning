@@ -5,7 +5,7 @@ import langList from './langList';
 
 function LangListNav(props) {
   const langList = props.list;
-  const listItems = langList.map((lang) => (
+  const listItems = langList.map(lang => (
     <li key={lang.name}>
       <NavLink activeClassName={lang.activeClassName} to={lang.path}>
         {lang.text}
@@ -20,7 +20,7 @@ function LangListNav(props) {
   );
 }
 
-export default function () {
+export default function VideoPage() {
   return (
     <div>
       <nav className="top-nav">
@@ -30,7 +30,7 @@ export default function () {
         <h2>视频专区</h2>
         <p>选中我之后左边的导航栏字体会变成绿色</p>
         <div>
-          {langList.map((lang) => (
+          {langList.map(lang => (
             <Route
               key={lang.name}
               path={lang.path}
