@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 class="demo">哈哈哈</h1>
+    <script>
+      // FinalizationRegistry 对象可以让你在对象被垃圾回收时请求一个回调。
+      // 创建 FinalizationRegistry:
+      const reg = new FinalizationRegistry((val) => {
+        // val 是下面注册时需要传入的
+        console.log(val);
+      });
+
+      (function () {
+        // 获取 DOM 做为新对象:
+        const demo = document.querySelector('.demo');
+
+        //为 demo 对象注册 finalizer：
+        //第一个参数：要为其注册 finalizer 的对象。
+        //第二个参数：上面定义的回调函数的值。
+        reg.register(demo, 'demo 已经被垃圾回收');
+        // 当 demo 被垃圾回收时输出：
+        // demo 已经被垃圾回收
+      })();
+
+      setTimeout(() => {
+        // 删除 DOM， demo对象会被回收
+        document.querySelector('.demo').remove();
+      }, 2000);
+    </script>
+  </body>
+</html>

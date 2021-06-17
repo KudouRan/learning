@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="counter"></h1>
+    <script>
+      // 来自 MDN 的案例
+      class Counter {
+        constructor(element) {
+          // 定义弱引用
+          this.ref = new WeakRef(element); // 获取元素
+          this.start();
+        }
+
+        // 开始计数
+        start() {
+          if (this.timer) {
+            return;
+          }
+
+          this.count = 0;
+          const tick = () => {
+            // 使用deref访问
+            const element = this.ref.deref();
+            if (element) {
+              element.textContent = ++this.count; // 计数
+            } else {
+              // 如果元素不存在
+              console.log('元素不存在了');
+              this.stop();
+              this.ref = null;
+            }
+          };
+
+          tick();
+          this.timer = setInterval(tick, 1000);
+        }
+
+        // 停止计数
+        stop() {
+          if (this.timer) {
+            clearInterval(this.timer);
+            this.timer = 0;
+          }
+        }
+      }
+
+      new Counter(document.getElementById('counter')).start();
+      // 5s 后删除
+      setTimeout(() => {
+        document.getElementById('counter').remove();
+      }, 5000);
+    </script>
+  </body>
+</html>
