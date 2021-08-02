@@ -72,7 +72,7 @@ type Part2 = MyOmit<A1, 'a' | 'b'>;
  */
 type MyExtract<T, U> = T extends U ? T : never;
 // "1" | "2"
-type RightFields = Extract<'1' | '2' | '3' | '4', '1' | '2' | '6'>;
+type RightFields = MyExtract<'1' | '2' | '3' | '4', '1' | '2' | '6'>;
 
 /**
  * Record<Keys, Type> 生成以联合类型为键名（Keys），键值类型为 Type 的新接口
