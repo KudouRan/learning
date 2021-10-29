@@ -82,3 +82,9 @@ webpack server
 ```bash
 npm i -D webpack-merge
 ```
+
+一个私有 npm 代理
+
+```bash
+npm install verdaccio -g
+```

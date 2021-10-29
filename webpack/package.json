@@ -8,7 +8,8 @@
     "build:vue1": "webpack --config vue/build/webpack.config.js",
     "dev:vue1": "webpack server --config vue/build/webpack.config.js --open",
     "build:vue:prod": "webpack --config vue/build/webpack.prod.js",
-    "build:vue:dev": "webpack --config vue/build/webpack.dev.js"
+    "build:vue:dev": "webpack --config vue/build/webpack.dev.js",
+    "build:loader1": "webpack --config loader/webpack.config.js"
   },
   "author": "",
   "license": "ISC",
